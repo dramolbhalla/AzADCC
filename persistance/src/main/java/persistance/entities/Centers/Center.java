@@ -1,3 +1,7 @@
+/**
+ * @author Amol Bhalla
+ *
+ */
 package persistance.entities.Centers;
 
 public class Center {
@@ -89,5 +93,61 @@ public class Center {
 	
 	public void set_centerAddress1(String centerAddress1){
 		this.centerAddress1 = centerAddress1;
+	}
+	
+	public String get_centerAddress2(){
+		return centerAddress2;
+	}
+	
+	public void set_centerAddress2(String centerAddress2){
+		this.centerAddress2 = centerAddress2;
+	}
+	
+	public String get_centerCity(){
+		return centerCity;
+	}
+	
+	public void set_centerCity(String centerCity){
+		this.centerCity = centerCity;
+	}
+	
+	public String get_centerState(){
+		return centerState;
+	}
+	
+	public void set_centerState(String centerState){
+		this.centerState = centerState;
+	}
+	
+	public String get_centerZip(){
+		return centerZip;
+	}
+	
+	public void set_centerZip(String centerZip){
+		this.centerZip = centerZip;
+	}
+	
+	public String get_centerPhone(){
+		return centerPhone;
+	}
+	
+	public void set_centerPhone(String centerPhone){
+		this.centerPhone = centerPhone;
+	}
+	
+	public String get_centerFax(){
+		return centerFax;
+	}
+	
+	public void set_centerFax(String centerFax){
+		this.centerFax = centerFax;
+	}
+	
+	public String get_centerNote(){
+		return centerNote;
+	}
+	
+	public void set_centerNote(String centerNote){
+		this.centerNote = centerNote;
 	}
 }

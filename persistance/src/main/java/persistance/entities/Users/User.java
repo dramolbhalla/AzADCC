@@ -12,9 +12,11 @@ public class User {
 	String firstName;
 	String middleName;
 	String lastName;
+	String initials;
 	String department; 
 	String profTitle;
-	String designations;   
+	String designations;
+	String accessLevel;
 	String notes;   
 	
 	/**
@@ -133,6 +135,22 @@ public class User {
 	 * 
 	 * @return
 	 */
+	public String get_initials(){
+		return initials;
+	}
+	
+	/**
+	 * 
+	 * @param lastName
+	 */
+	public void set_initials(String initials){
+		this.initials = initials;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public String get_department(){
 		return department;
 	}
@@ -175,6 +193,22 @@ public class User {
 	 */
 	public void set_designations (String designations){
 		this.designations = designations;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public String get_accessLevel (){
+		return accessLevel;
+	}
+	
+	/**
+	 * 
+	 * @param designations
+	 */
+	public void set_accessLevel (String accessLevel){
+		this.accessLevel = accessLevel;
 	}
 	
 	/**

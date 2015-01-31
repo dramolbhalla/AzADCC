@@ -1,15 +1,10 @@
-/**
- * @author Amol Bhalla
- *
- */
 package persistance.entities.Subjects;
 
-public class Subject {
+public class SubjectLog {
+	
 	int sid;
 	String subjectId;
-	String clinicId;
 	String subjectLog;
-	String notes;   
 	
 	/**
 	 * 
@@ -47,31 +42,16 @@ public class Subject {
 	 * 
 	 * @return
 	 */
-	public String get_clinicId(){
-		return clinicId;
+	public String get_subjectLog(){
+		return subjectLog;
 	}
 	
 	/**
 	 * 
 	 * @param clinicId
 	 */
-	public void set_clinicId(String clinicId){
-		this.clinicId = clinicId;
+	public void set_subjectLog(String subjectLog){
+		this.subjectLog = subjectLog;
 	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public String get_notes () {
-		return notes;
-	}
-	
-	/**
-	 * 
-	 * @param notes
-	 */
-	public void set_notes (String notes){
-		this.notes = notes;
-	}
+
 }
