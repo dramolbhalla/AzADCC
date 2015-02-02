@@ -4,7 +4,14 @@ public class C2 {
 	int uid;
 	int sid;
 	String userId;
+	String userInitial;
 	String subjectId;
+	String formMo;
+	String formDy;
+	String formYr;
+	int visitNum;
+	String visitType;
+	int c2;
 	int mocacomp;
 	int mocareas;
 	int mocaloc;
@@ -41,7 +48,7 @@ public class C2 {
 	int craftvrs;
 	int crafturs;
 	int udsbentc;
-	int digiforct;
+	int digforct;
 	int digforsl;
 	int digbacct;
 	int digbacls;

@@ -4,7 +4,14 @@ public class B8 {
 	int uid;
 	int sid;
 	String userId;
+	String userInitial;
 	String subjectId;
+	String formMo;
+	String formDy;
+	String formYr;
+	int visitNum;
+	String visitType;
+	int b8;
 	int normexam;
 	int parksign;
 	int resttrl;

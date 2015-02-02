@@ -1,12 +1,19 @@
-package persistance.entities.UDS_ver3.Initial;
+package persistance.entities.UDS_ver3.Followup;
 
 public class A3 {
 
 	int uid;
 	int sid;
 	String userId;
+	String userInitial;
 	String subjectId;
-	int afffamm;
+	String formMo;
+	String formDy;
+	String formYr;
+	int visitNum;
+	String visitType;
+	int a3;
+	int nwinfmut;
 	int fadmut;
 	String fadmutx;
 	int fadmuso;
@@ -34,6 +41,7 @@ public class A3 {
 	int dadmoe;
 	int dadageo;
 	int sibs;
+	int nwinfsib;
 	int sib1mob;
 	int sib1yob;
 	int sib1agd;
@@ -175,6 +183,7 @@ public class A3 {
 	int sib20moe;
 	int sib20ago;
 	int kids;
+	int nwinfkid;
 	int kid1mob;
 	int kid1yob;
 	int kid1agd;
@@ -281,3 +290,6 @@ public class A3 {
 	int kid15moe;
 	int kid15ago;
 }
+
+
+

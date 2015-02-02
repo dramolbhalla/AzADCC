@@ -4,7 +4,14 @@ public class D2 {
 	int uid;
 	int sid;
 	String userId;
+	String userInitial;
 	String subjectId;
+	String formMo;
+	String formDy;
+	String formYr;
+	int visitNum;
+	String visitType;
+	int d2;
 	int cancer;
 	int cancsite;
 	int diabet;

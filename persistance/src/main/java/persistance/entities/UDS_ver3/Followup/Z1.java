@@ -1,11 +1,16 @@
 package persistance.entities.UDS_ver3.Followup;
 
 public class Z1 {
-	
 	int uid;
 	int sid;
 	String userId;
+	String userInitial;
 	String subjectId;
+	String formMo;
+	String formDy;
+	String formYr;
+	int visitNum;
+	String visitType;
 	int z1;
 	int a2sub;
 	int a2not;

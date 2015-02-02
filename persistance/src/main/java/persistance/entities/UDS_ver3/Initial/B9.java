@@ -4,7 +4,14 @@ public class B9 {
 	int uid;
 	int sid;
 	String userId;
+	String userInitial;
 	String subjectId;
+	String formMo;
+	String formDy;
+	String formYr;
+	int visitNum;
+	String visitType;
+	int b9;
 	int decsub;
 	int decin;
 	int decclcog;

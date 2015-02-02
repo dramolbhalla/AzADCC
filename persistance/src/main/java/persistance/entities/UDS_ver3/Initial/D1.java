@@ -4,7 +4,14 @@ public class D1 {
 	int uid;
 	int sid;
 	String userId;
+	String userInitial;
 	String subjectId;
+	String formMo;
+	String formDy;
+	String formYr;
+	int visitNum;
+	String visitType;
+	int d1;
 	int dxmethod;
 	int normcog;
 	int demented;
@@ -39,7 +46,7 @@ public class D1 {
 	int taupetad;
 	int csftau;
 	int fdgftld;
-	int tpetfld;
+	int tpetftld;
 	int mrftld;
 	int datscan;
 	int othbiom;
