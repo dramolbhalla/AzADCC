@@ -5,6 +5,7 @@ public class A1 {
 	int sid;
 	String userId;
 	String subjectId;
+	int a1;
 	int reason;
 	int refersc;
 	int learned;
