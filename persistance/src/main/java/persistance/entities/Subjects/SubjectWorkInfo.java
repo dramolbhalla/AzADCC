@@ -56,6 +56,30 @@ public class SubjectWorkInfo {
 	public SubjectWorkInfo(){
 		
 	}
+	
+	/**
+	 * Default constructor for SubjectWorkInfo table.
+	 * @param address1
+	 * @param address2
+	 * @param city
+	 * @param state
+	 * @param zip
+	 * @param workPhone
+	 * @param extension
+	 * @param fax
+	 * @param email
+	 */
+	public SubjectWorkInfo(String address1, String address2, String city, String state, String zip, String workPhone, String extension, String fax, String email){
+		this.address1 = address1;
+		this.address2 = address2;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.workPhone = workPhone;
+		this.extension = extension;
+		this.fax = fax;
+		this.email = email;
+	}
 		
 	/**
 	 * 

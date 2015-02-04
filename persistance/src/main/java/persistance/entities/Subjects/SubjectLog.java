@@ -30,6 +30,14 @@ public class SubjectLog {
 	}
 	
 	/**
+	 * Default constructor for SubjectLog table.
+	 * @param subjectLog
+	 */
+	public SubjectLog(String subjectLog){
+		this.subjectLog = subjectLog;
+	}
+	
+	/**
 	 * 
 	 * @return
 	 */

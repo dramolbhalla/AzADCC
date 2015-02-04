@@ -88,6 +88,42 @@ public class SubjectPersonalInfo {
 	}
 	
 	/**
+	 * Default constructor for SubjectPersonalInfo table.
+	 * @param address1
+	 * @param address2
+	 * @param birthdate
+	 * @param city
+	 * @param email
+	 * @param firstName
+	 * @param homePhone
+	 * @param lastName
+	 * @param middleName
+	 * @param mobilePhone
+	 * @param profTitle
+	 * @param ssn
+	 * @param state
+	 * @param title
+	 * @param zip
+	 */
+	public SubjectPersonalInfo(String address1, String address2, String birthdate, String city, String email, String firstName, String homePhone, String lastName, String middleName, String mobilePhone, String profTitle, String ssn, String state, String title, String zip){
+		this.address1 = address1;
+		this.address2 = address2;
+		this.birthdate = birthdate;
+		this.city = city;
+		this.email = email;
+		this.firstName = firstName;
+		this.homePhone = homePhone;
+		this.lastName = lastName;
+		this.middleName = middleName;
+		this.mobilePhone = mobilePhone;
+		this.profTitle = profTitle;
+		this.ssn = ssn;
+		this.state = state;
+		this.title = title;
+		this.zip = zip;
+	}
+	
+	/**
 	 * 
 	 * @return
 	 */

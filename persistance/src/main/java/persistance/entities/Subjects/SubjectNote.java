@@ -28,6 +28,10 @@ public class SubjectNote {
 	public SubjectNote(){
 		
 	}
+	
+	public SubjectNote(String subjectNote){
+		this.subjectNote = subjectNote;
+	}
 		
 	/**
 	 * 

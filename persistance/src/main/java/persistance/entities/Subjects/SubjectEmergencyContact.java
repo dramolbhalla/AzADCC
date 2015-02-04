@@ -66,6 +66,36 @@ public class SubjectEmergencyContact {
 		
 	}
 	
+	/**
+	 * 
+	 * @param address1
+	 * @param address2
+	 * @param city
+	 * @param email
+	 * @param firstName
+	 * @param homePhone
+	 * @param lastName
+	 * @param middleName
+	 * @param mobilePhone
+	 * @param state
+	 * @param title
+	 * @param zip
+	 */
+	public SubjectEmergencyContact(String address1, String address2, String city, String email, String firstName, String homePhone, String lastName, String middleName, String mobilePhone, String state, String title, String zip){
+		this.address1 = address1;
+		this.address2 = address2;
+		this.city = city;
+		this.email = email;
+		this.firstName = firstName;
+		this.homePhone = homePhone;
+		this.lastName = lastName;
+		this.middleName = middleName;
+		this.mobilePhone = mobilePhone;
+		this.state = state;
+		this.title = title;
+		this.zip = zip;
+	}
+	
 		
 	/**
 	 * 

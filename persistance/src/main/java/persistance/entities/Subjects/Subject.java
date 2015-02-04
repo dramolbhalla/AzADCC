@@ -42,6 +42,16 @@ public class Subject {
 	
 	/**
 	 * 
+	 * @param subjectId
+	 * @param clinicId
+	 */
+	public Subject(String subjectId, String clinicId){
+		this.clinicId = clinicId;
+		this.subjectId = subjectId;
+	}
+	
+	/**
+	 * 
 	 * @return
 	 */
 	public int get_sid(){

@@ -4,6 +4,11 @@
  */
 package persistance.entities.Users;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity 
+@Table(name="USER")
 public class User {
 	int uid;
 	String userId;
