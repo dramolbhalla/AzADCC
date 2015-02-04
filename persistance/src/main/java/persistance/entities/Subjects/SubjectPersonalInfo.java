@@ -4,47 +4,94 @@
  */
 package persistance.entities.Subjects;
 
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="SUBJECT_PERSONAL_INFO")
 public class SubjectPersonalInfo {
 	
-	int sid;
-	String subjectId;
-	String title;
-	String firstName;
-	String middleName;
-	String lastName;
-	String profTitle;
-	String address1; 
-	String address2; 
-	String city; 
-	String state; 
-	String zip;  
-	String homePhone; 
-	String mobilePhone; 
-	String ssn;  
-	String birthdate;
-	String email; 
+	@OneToOne
+	private Subject subjectId;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int personalInfo;
+	
+	@Column(name="title")
+	private String title;
+	
+	@Column(name="firstName")
+	private String firstName;
+	
+	@Column(name="middleName")
+	private String middleName;
+	
+	@Column(name="lastName")
+	private String lastName;
+	
+	@Column(name="profTitle")
+	private String profTitle;
+	
+	@Column(name="address1")
+	private String address1; 
+	
+	@Column(name="address2")
+	private String address2; 
+	
+	@Column(name="city")
+	private String city; 
+	
+	@Column(name="state")
+	private String state; 
+	
+	@Column(name="zip")
+	private String zip;  
+	
+	@Column(name="homePhone")
+	private String homePhone; 
+	
+	@Column(name="mobilePhone")
+	private String mobilePhone; 
+	
+	@Column(name="ssn")
+	private String ssn;  
+	
+	@Column(name="birthdate")
+	private String birthdate;
+	
+	@Column(name="email")
+	private String email; 
+	
+	@OneToMany
+	private Set<SubjectEmergencyContact> subjectEmergencyContact;
+	
+	@OneToOne
+	private SubjectExpired subjectExpired;
+	
+	@OneToMany
+	private Set<SubjectWorkInfo> subjectWorkInfo;
+	
+	/**
+	 * Empty class constructor for subject table.
+	 */
+	public SubjectPersonalInfo(){
+		
+	}
 	
 	/**
 	 * 
 	 * @return
 	 */
-	public int get_uid(){
-	     return sid;
-	}
-	
-	/**
-	 * 
-	 * @param sid
-	 */
-	public void set_uid(int sid){
-		this.sid = sid;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public String get_subjectId(){
+	public Subject get_subjectId(){
 		return subjectId;
 	}
 	
@@ -52,7 +99,7 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @param userId
 	 */
-	public void set_subjectId(String subjectId){
+	public void set_subjectId(Subject subjectId){
 		this.subjectId = subjectId;
 	}
 	
@@ -295,5 +342,54 @@ public class SubjectPersonalInfo {
 	public void set_email (String email){
 		this.email = email;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Set<SubjectEmergencyContact> get_SubjectEmergencyContact(){
+		return subjectEmergencyContact;
+	}
+	
+	/**
+	 * 
+	 * @param subjectEmergencyContact
+	 */
+	public void set_SubjectEmergencyContact(Set<SubjectEmergencyContact> subjectEmergencyContact){
+		this.subjectEmergencyContact = subjectEmergencyContact;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public SubjectExpired get_SubjectExpired(){
+		return subjectExpired;
+	}
+	
+	/**
+	 * 
+	 * @param subjectExpired
+	 */
+	public void set_SubjectExpired(SubjectExpired subjectExpired){
+		this.subjectExpired = subjectExpired;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Set<SubjectWorkInfo> get_SubjectWorkInfo(){
+		return subjectWorkInfo;
+	}
+	
+	/**
+	 * 
+	 * @param subjectEmergencyContact
+	 */
+	public void set_SubjectWorkInfo(Set<SubjectWorkInfo> subjectWorkInfo){
+		this.subjectWorkInfo = subjectWorkInfo;
+	}
+		
 
 }

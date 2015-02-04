@@ -4,10 +4,13 @@
  */
 package persistance.entities.Subjects;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 
 @Entity
+@Table(name="SUBJECT")
 public class Subject {
 	
 	//Subject ID is the primary key for table, 
@@ -15,10 +18,20 @@ public class Subject {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int sid;
 	
+	@Column(name="subjectId")
 	private String subjectId;
+	
+	@Column(name="clinicId")
 	private String clinicId;
-	private String subjectLog;
-	private String notes;
+	
+	@OneToMany
+	private Set<SubjectLog> subjectLogs;
+	
+	@OneToMany
+	private Set<SubjectNote> subjectNotes;
+	
+	@OneToOne
+	private SubjectPersonalInfo subjectPersonalInfo;
 	
 	/**
 	 * Empty class constructor for subject table.
@@ -79,31 +92,31 @@ public class Subject {
 	 * 
 	 * @param subjectLog
 	 */
-	public void set_subjectLog(String subjectLog){
-		this.subjectLog = subjectLog;
+	public void set_subjectLog(Set<SubjectLog> subjectLog){
+		this.subjectLogs = subjectLog;
 	}
 	
 	/**
 	 * 
 	 * @return
 	 */
-	public String get_subjectLog(){
-		return subjectLog;
+	public Set<SubjectLog> get_subjectLog(){
+		return subjectLogs;
 	}
 	
 	/**
 	 * 
 	 * @return
 	 */
-	public String get_notes () {
-		return notes;
+	public Set<SubjectNote> get_notes () {
+		return subjectNotes;
 	}
 	
 	/**
 	 * 
-	 * @param notes
+	 * @param subjectNote
 	 */
-	public void set_notes (String notes){
-		this.notes = notes;
+	public void set_notes (Set<SubjectNote> subjectNote){
+		this.subjectNotes = subjectNote;
 	}
 }

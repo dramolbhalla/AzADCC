@@ -1,35 +1,48 @@
 package persistance.entities.Subjects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="SUBJECT_EXPIRED")
 public class SubjectExpired {
 
-	int sid;
-	String subjectId;
-	String subjectExpired;
-    String subjectExpiredAge; 
-    String subjectExpiredDate;
-    String subjectExpiredReason; 
+	@OneToOne
+	private Subject subjectId;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int expired;
+	
+	@Column(name="subjectExpired")
+	private String subjectExpired;
+
+	@Column(name="subjectExpiredAge")
+	private String subjectExpiredAge;
+
+	@Column(name="subjectExpiredDate")
+	private String subjectExpiredDate;
+	
+	@Column(name="subjectExpiredReason")
+	private String subjectExpiredReason; 
+	
+	/**
+	 * Empty class constructor for subject table.
+	 */
+	public SubjectExpired(){
+		
+	}
 	
 	/**
 	 * 
 	 * @return
 	 */
-	public int get_sid(){
-		return sid;
-	}
-	
-	/**
-	 * 
-	 * @param uid
-	 */
-	public void set_sid(int sid){
-		this.sid = sid;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public String get_subjectId(){
+	public Subject get_subjectId(){
 		return subjectId;
 	}
 	
@@ -37,7 +50,7 @@ public class SubjectExpired {
 	 * 
 	 * @param userId
 	 */
-	public void set_subjectId(String subjectId){
+	public void set_subjectId(Subject subjectId){
 		this.subjectId = subjectId;
 	}
 	

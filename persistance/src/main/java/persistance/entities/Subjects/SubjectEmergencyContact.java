@@ -4,44 +4,74 @@
  */
 package persistance.entities.Subjects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="SUBJECT_EMERGENCY_CONTACT")
 public class SubjectEmergencyContact {
 	
-	int sid;
-	String subjectId;
-	String title;
-	String firstName;
-	String middleName;
-	String lastName;
-	String address1; 
-	String address2; 
-	String city; 
-	String state; 
-	String zip;  
-	String homePhone; 
-	String mobilePhone;
-	String email; 
+	@OneToOne
+	private Subject subjectId;
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int emergencyContact;
+	
+	@Column(name="title")
+	private String title;
+	
+	@Column(name="firstName")
+	private String firstName;
+	
+	@Column(name="middleName")
+	private String middleName;
+	
+	@Column(name="lastName")
+	private String lastName;
+	
+	@Column(name="address1")
+	private String address1; 
+	
+	@Column(name="address2")
+	private String address2; 
+	
+	@Column(name="city")
+	private String city; 
+	
+	@Column(name="state")
+	private String state; 
+	
+	@Column(name="zip")
+	private String zip;  
+	
+	@Column(name="homePhone")
+	private String homePhone; 
+	
+	@Column(name="mobilePhone")
+	private String mobilePhone;
+	
+	@Column(name="email")
+	private String email; 
+	
+	/**
+	 * Empty class constructor for subject table.
+	 */
+	public SubjectEmergencyContact(){
+		
+	}
+	
+		
 	/**
 	 * 
 	 * @return
 	 */
-	public int get_sid(){
-	     return sid;
-	}
-	
-	/**
-	 * 
-	 * @param sid
-	 */
-	public void set_sid(int sid){
-		this.sid = sid;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public String get_subjectId(){
+	public Subject get_subjectId(){
 		return subjectId;
 	}
 	
@@ -49,7 +79,7 @@ public class SubjectEmergencyContact {
 	 * 
 	 * @param userId
 	 */
-	public void set_subjectId(String subjectId){
+	public void set_subjectId(Subject subjectId){
 		this.subjectId = subjectId;
 	}
 	

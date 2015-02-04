@@ -4,41 +4,64 @@
  */
 package persistance.entities.Subjects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="SUBJECT_WORK_INFO")
 public class SubjectWorkInfo {
 	
-	int sid;
-	String subjectId;
-	String address1; 
-	String address2; 
-	String city; 
-	String state; 
-	String zip; 
-	String workPhone; 
-	String extension; 
-	String fax; 
-	String email;  
+	@OneToOne
+	private Subject subjectId;
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int workInfo;
+	
+	@Column(name="address1")
+	private String address1; 
+	
+	@Column(name="address2")
+	private String address2; 
+	
+	@Column(name="city")
+	private String city; 
+	
+	@Column(name="state")
+	private String state; 
+	
+	@Column(name="zip")
+	private String zip; 
+	
+	@Column(name="workPhone")
+	private String workPhone; 
+	
+	@Column(name="extension")
+	private String extension; 
+	
+	@Column(name="fax")
+	private String fax; 
+	
+	@Column(name="email")
+	private String email; 
+	
+	/**
+	 * Empty class constructor for subject table.
+	 */
+	public SubjectWorkInfo(){
+		
+	}
+		
 	/**
 	 * 
 	 * @return
 	 */
-	public int get_uid(){
-	     return sid;
-	}
-	
-	/**
-	 * 
-	 * @param uid
-	 */
-	public void set_uid(int sid){
-		this.sid = sid;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public String get_subjectId(){
+	public Subject get_subjectId(){
 		return subjectId;
 	}
 	
@@ -46,7 +69,7 @@ public class SubjectWorkInfo {
 	 * 
 	 * @param userId
 	 */
-	public void set_subjectId(String subjectId){
+	public void set_subjectId(Subject subjectId){
 		this.subjectId = subjectId;
 	}
 	

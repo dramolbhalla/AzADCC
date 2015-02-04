@@ -9,26 +9,26 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="SUBJECT_LOG")
-public class SubjectLog {
+@Table(name="SUBJECT_NOTE")
+public class SubjectNote {
 	
 	@OneToOne
 	private Subject subjectId;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int log;
+	private int note;
 	
-	@Column(name="subjectLog")
-	private String subjectLog;
+	@Column(name="subjectNote")
+	private String subjectNote;
 	
 	/**
 	 * Empty class constructor for subject table.
 	 */
-	public SubjectLog(){
+	public SubjectNote(){
 		
 	}
-	
+		
 	/**
 	 * 
 	 * @return
@@ -49,16 +49,16 @@ public class SubjectLog {
 	 * 
 	 * @return
 	 */
-	public String get_subjectLog(){
-		return subjectLog;
+	public String get_subjectNote(){
+		return subjectNote;
 	}
 	
 	/**
 	 * 
 	 * @param clinicId
 	 */
-	public void set_subjectLog(String subjectLog){
-		this.subjectLog = subjectLog;
+	public void set_subjectLog(String subjectNote){
+		this.subjectNote = subjectNote;
 	}
 
 }
