@@ -102,7 +102,7 @@ public class Subject {
 	 * 
 	 * @param subjectLog
 	 */
-	public void set_subjectLog(Set<SubjectLog> subjectLog){
+	public void set_SubjectLog(Set<SubjectLog> subjectLog){
 		this.subjectLogs = subjectLog;
 	}
 	
@@ -110,7 +110,7 @@ public class Subject {
 	 * 
 	 * @return
 	 */
-	public Set<SubjectLog> get_subjectLog(){
+	public Set<SubjectLog> get_SubjectLog(){
 		return subjectLogs;
 	}
 	
@@ -118,7 +118,7 @@ public class Subject {
 	 * 
 	 * @return
 	 */
-	public Set<SubjectNote> get_notes () {
+	public Set<SubjectNote> get_SubjectNotes () {
 		return subjectNotes;
 	}
 	
@@ -126,7 +126,23 @@ public class Subject {
 	 * 
 	 * @param subjectNote
 	 */
-	public void set_notes (Set<SubjectNote> subjectNote){
+	public void set_SubjectNotes (Set<SubjectNote> subjectNote){
 		this.subjectNotes = subjectNote;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public SubjectPersonalInfo get_SubjectPersonalInfo(){
+		return subjectPersonalInfo;
+	}
+	
+	/**
+	 * 
+	 * @param subjectPersonalInfo
+	 */
+	public void set_SubjectPersonalInfo (SubjectPersonalInfo subjectPersonalInfo){
+		this.subjectPersonalInfo = subjectPersonalInfo;
 	}
 }

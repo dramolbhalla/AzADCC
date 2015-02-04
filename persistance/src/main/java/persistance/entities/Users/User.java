@@ -4,25 +4,52 @@
  */
 package persistance.entities.Users;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import java.util.Set;
+
+import persistance.entities.Subjects.*;
+import persistance.entities.Centers.*;
+import persistance.entities.Clinics.*;
+
+import javax.persistence.*;
 
 @Entity 
 @Table(name="USER")
 public class User {
-	int uid;
-	String userId;
-	String clinicId;
-	String title;
-	String firstName;
-	String middleName;
-	String lastName;
-	String initials;
-	String department; 
-	String profTitle;
-	String designations;
-	String accessLevel;
-	String notes;   
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int uid;
+	
+	@Column(name="userId")
+	private String userId;
+	
+	@Column(name="accessLevel")
+	private int accessLevel;
+	
+	@OneToMany
+	private Set<Subject> subjects;
+	
+	@OneToMany
+	private Set<Center> centers;
+	
+	@OneToMany
+	private Set<Clinic> clinics;
+	
+	@OneToMany
+	private Set<UserNote> userNotes;
+	
+	@OneToMany
+	private Set<UserLog> userLogs;
+	
+	public User(){
+		
+	}
+	
+	public User(String userId, int accessLevel){
+		this.userId = userId;
+		this.accessLevel = accessLevel;
+	}
+	 
 	
 	/**
 	 * 
@@ -56,155 +83,13 @@ public class User {
 		this.userId = userId;
 	}
 	
-	/**
-	 * 
-	 * @return
-	 */
-	public String get_clinicId(){
-		return clinicId;
-	}
 	
-	/**
-	 * 
-	 * @param clinicId
-	 */
-	public void set_clinicId(String clinicId){
-		this.clinicId = clinicId;
-	}
 	
 	/**
 	 * 
 	 * @return
 	 */
-	public String get_title(){
-		return title;
-	}
-	
-	/**
-	 * 
-	 * @param title
-	 */
-	public void set_title(String title){
-		this.title = title;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public String get_firstName(){
-		return firstName;
-	}
-	
-	/**
-	 * 
-	 * @param firstName
-	 */
-	public void set_firstName(String firstName){
-		this.firstName = firstName;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public String get_middleName(){
-		return middleName;
-	}
-	
-	/**
-	 * 
-	 * @param middleName
-	 */
-	public void set_middleName(String middleName){
-		this.middleName = middleName;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public String get_lastName(){
-		return lastName;
-	}
-	
-	/**
-	 * 
-	 * @param lastName
-	 */
-	public void set_lastName(String lastName){
-		this.lastName = lastName;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public String get_initials(){
-		return initials;
-	}
-	
-	/**
-	 * 
-	 * @param lastName
-	 */
-	public void set_initials(String initials){
-		this.initials = initials;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public String get_department(){
-		return department;
-	}
-	
-	/**
-	 * 
-	 * @param department
-	 */
-	public void set_department(String department){
-		this.department = department;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public String get_profTitle (){
-		return profTitle;
-	}
-	
-	/**
-	 * 
-	 * @param profTitle
-	 */
-	public void set_profTitle (String profTitle){
-		this.profTitle = profTitle;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public String get_designations (){
-		return designations;
-	}
-	
-	/**
-	 * 
-	 * @param designations
-	 */
-	public void set_designations (String designations){
-		this.designations = designations;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public String get_accessLevel (){
+	public int get_accessLevel (){
 		return accessLevel;
 	}
 	
@@ -212,7 +97,7 @@ public class User {
 	 * 
 	 * @param designations
 	 */
-	public void set_accessLevel (String accessLevel){
+	public void set_accessLevel (int accessLevel){
 		this.accessLevel = accessLevel;
 	}
 	
@@ -220,15 +105,79 @@ public class User {
 	 * 
 	 * @return
 	 */
-	public String get_notes () {
-		return notes;
+	public Set<Subject> get_Subject () {
+		return subjects;
 	}
 	
 	/**
 	 * 
-	 * @param notes
+	 * @param subjectNote
 	 */
-	public void set_notes (String notes){
-		this.notes = notes;
+	public void set_Subject (Set<Subject> subjects){
+		this.subjects = subjects;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Set<Center> get_Center () {
+		return centers;
+	}
+	
+	/**
+	 * 
+	 * @param centers
+	 */
+	public void set_Center (Set<Center> centers){
+		this.centers = centers;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Set<Clinic> get_Clinic () {
+		return clinics;
+	}
+	
+	/**
+	 * 
+	 * @param clinics
+	 */
+	public void set_Clinic (Set<Clinic> clinics){
+		this.clinics = clinics;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Set<UserNote> get_UserNote () {
+		return userNotes;
+	}
+	
+	/**
+	 * 
+	 * @param userNotes
+	 */
+	public void set_UserNote (Set<UserNote> userNotes){
+		this.userNotes = userNotes;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Set<UserLog> get_UserLog () {
+		return userLogs;
+	}
+	
+	/**
+	 * 
+	 * @param userLogs
+	 */
+	public void set_UserLog (Set<UserLog> userLogs){
+		this.userLogs = userLogs;
 	}
 }

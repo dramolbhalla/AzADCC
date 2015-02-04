@@ -4,50 +4,110 @@
  */
 package persistance.entities.Users;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="USER_WORK_INFO")
 public class UserWorkInfo {
 	
-	int uid;
-	String userId;
+	@OneToOne
+	private User user;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int workInfo;
+
+	@Column(name="address1")
 	String address1; 
-	String address2; 
+	
+	@Column(name="address2")
+	String address2;
+	
+	@Column(name="city")
 	String city; 
+	
+	@Column(name="state")
 	String state; 
+	
+	@Column(name="zip")
 	String zip; 
+	
+	@Column(name="workPhone")
 	String workPhone; 
+	
+	@Column(name="extension")
 	String extension; 
+	
+	@Column(name="fax")
 	String fax; 
+	
+	@Column(name="email")
 	String email;  
 	
 	/**
+	 * Default blank constructor for UserWorkInfo.
+	 */
+	public UserWorkInfo(){
+		
+	}
+	
+	/**
+	 * Default constructor for UserWorkInfo.
+	 * @param address1
+	 * @param address2
+	 * @param city
+	 * @param email
+	 * @param state
+	 * @param zip
+	 * @param workPhone
+	 * @param extension
+	 * @param fax
+	 */
+	public UserWorkInfo(String address1, String address2, String city, String email, String state, String zip, String workPhone, String extension, String fax){
+		this.address1 = address1;
+		this.address2 = address2;
+		this.city = city;
+		this.email = email;
+		this.state = state;
+		this.zip = zip;
+		this.workPhone = workPhone;
+		this.extension = extension;
+		this.fax = fax;
+		
+	}
+	
+	//Getter and Setters
+	
+	/**
 	 * 
 	 * @return
 	 */
-	public int get_uid(){
-	     return uid;
+	public User get_User(){
+		return user;
 	}
 	
 	/**
 	 * 
-	 * @param uid
+	 * @param user
 	 */
-	public void set_uid(int uid){
-		this.uid = uid;
+	public void set_User(User user){
+		this.user = user;
 	}
 	
 	/**
 	 * 
 	 * @return
 	 */
-	public String get_userId(){
-		return userId;
+	public int get_workInfo(){
+		return workInfo;
 	}
 	
 	/**
 	 * 
-	 * @param userId
+	 * @param workInfo
 	 */
-	public void set_userId(String userId){
-		this.userId = userId;
+	public void set_workInfo(int workInfo){
+		this.workInfo = workInfo;
 	}
 	
 	/**

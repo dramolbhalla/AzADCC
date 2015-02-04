@@ -4,53 +4,124 @@
  */
 package persistance.entities.Users;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="USER_EMERGENCY_CONTACT")
 public class UserEmergencyContact {
 	
-	int uid;
-	String userId;
+	@OneToOne
+	private User user;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int emergencyContact;
+	
+	@Column(name="title")
 	String title;
+	
+	@Column(name="firstName")
 	String firstName;
+	
+	@Column(name="middleName")
 	String middleName;
+	
+	@Column(name="lastName")
 	String lastName;
+	
+	@Column(name="address1")
 	String address1; 
+	
+	@Column(name="address2")
 	String address2; 
+	
+	@Column(name="city")
 	String city; 
+	
+	@Column(name="state")
 	String state; 
+	
+	@Column(name="zip")
 	String zip;  
+	
+	@Column(name="homePhone")
 	String homePhone; 
+	
+	@Column(name="mobilePhone")
 	String mobilePhone;
-	String email; 
+	
+	@Column(name="email")
+	String email;
+	
+	/**
+	 * Default blank constructor of UserEmergencyContact
+	 */
+	public UserEmergencyContact(){
+		
+	}
+	
+	/**
+	 * Default constructor for UserEmergencyContact
+	 * @param address1
+	 * @param address2
+	 * @param city
+	 * @param email
+	 * @param firstName
+	 * @param homePhone
+	 * @param lastName
+	 * @param middleName
+	 * @param mobilePhone
+	 * @param state
+	 * @param title
+	 * @param zip
+	 */
+	public UserEmergencyContact(String address1, String address2, String city, String email, String firstName, String homePhone, String lastName, String middleName, String mobilePhone, String state, String title, String zip){
+		this.address1 = address1;
+		this.address2 = address2;
+		this.city = city;
+		this.email = email;
+		this.firstName = firstName;
+		this.homePhone = homePhone;
+		this.lastName = lastName;
+		this.middleName = middleName;
+		this.mobilePhone = mobilePhone;
+		this.state = state;
+		this.title = title;
+		this.zip = zip;
+	}
+	
+	//Getters and Setters
 	
 	/**
 	 * 
 	 * @return
 	 */
-	public int get_uid(){
-	     return uid;
+	public User get_User(){
+		return user;
 	}
 	
 	/**
 	 * 
-	 * @param uid
+	 * @param user
 	 */
-	public void set_uid(int uid){
-		this.uid = uid;
+	public void set_User(User user){
+		this.user = user;
 	}
 	
 	/**
 	 * 
 	 * @return
 	 */
-	public String get_userId(){
-		return userId;
+	public int get_emergencyContact(){
+		return emergencyContact;
 	}
 	
 	/**
 	 * 
-	 * @param userId
+	 * @param emergencyContact
 	 */
-	public void set_userId(String userId){
-		this.userId = userId;
+	public void set_emergencyContact(int emergencyContact){
+		this.emergencyContact = emergencyContact;
 	}
 	
 	/**

@@ -1,41 +1,68 @@
 package persistance.entities.Users;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="USER_LOG")
 public class UserLog {
 	
-	int uid;
-	String userId;
-	String userLog;
+	@OneToOne
+	private User user;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int log;
+	
+	@Column(name="userLog")
+	private String userLog;
+	
+	/**
+	 * Default blank constructor for UserLog table.
+	 */
+	public UserLog(){
+		
+	}
+	
+	/**
+	 * Default constructor for UserLog table. 
+	 * @param userLog
+	 */
+	public UserLog(String userLog){
+		this.userLog = userLog;
+	}
 
+	//Getters and Setters
+	
 	/**
 	 * 
 	 * @return
 	 */
-	public int get_uid(){
-	     return uid;
+	public User get_User(){
+		return user;
+	}
+	
+	/**
+	 * 
+	 * @param user
+	 */
+	public void set_User(User user){
+		this.user = user;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public int get_log(){
+	     return log;
 	}
 	
 	/**
 	 * 
 	 * @param uid
 	 */
-	public void set_uid(int uid){
-		this.uid = uid;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public String get_userId(){
-		return userId;
-	}
-	
-	/**
-	 * 
-	 * @param userId
-	 */
-	public void set_userId(String userId){
-		this.userId = userId;
+	public void set_log(int log){
+		this.log = log;
 	}
 	
 	/**
