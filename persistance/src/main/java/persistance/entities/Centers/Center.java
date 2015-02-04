@@ -4,25 +4,105 @@
  */
 package persistance.entities.Centers;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="CENTER")
 public class Center {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	int cid;
+	
+	@Column(name="centerId")
 	String centerId;
+	
+	@Column(name="centerNumber")
 	String centerNumber;  
+	
+	@Column(name="centerName")
 	String centerName; 
-	String centerContactTitle; 
-	String centerContactFirstName; 
-	String centerContactLastName; 
-	String centerContactJobTitle; 
+	
+	@Column(name="centerContactTitle")
+	String centerContactTitle;
+	
+	@Column(name="centerContactFirstName")
+	String centerContactFirstName;
+	
+	@Column(name="centerContactLastName")
+	String centerContactLastName;
+	
+	@Column(name="centerContactJobTitle")
+	String centerContactJobTitle;
+	
+	@Column(name="centerAddress1")
 	String centerAddress1; 
+	
+	@Column(name="centerAddress2")
 	String centerAddress2; 
+	
+	@Column(name="centerCity")
 	String centerCity; 
+	
+	@Column(name="centerState")
 	String centerState;  
+	
+	@Column(name="centerZip")
 	String centerZip; 
+	
+	@Column(name="centerPhone")
 	String centerPhone; 
+	
+	@Column(name="centerFax")
 	String centerFax; 
+	
+	@Column(name="centerNote")
 	String centerNote;
 	
+	/**
+	 * Default blank constructor for center
+	 */
+	public Center(){
+		
+	}
+	
+	/**
+	 * Default constructor for center.
+	 * @param centerAddress1
+	 * @param centerAddress2
+	 * @param centerCity
+	 * @param centerContactFirstName
+	 * @param centerContactJobTitle
+	 * @param centerContactLastName
+	 * @param centerContactTitle
+	 * @param centerFax
+	 * @param centerId
+	 * @param centerName
+	 * @param centerNote
+	 * @param centerNumber
+	 * @param centerPhone
+	 * @param centerState
+	 * @param centerZip
+	 */
+	public Center(String centerAddress1, String centerAddress2, String centerCity, String centerContactFirstName, String centerContactJobTitle, String centerContactLastName, String centerContactTitle, String centerFax,String centerId, String centerName, String centerNote, String centerNumber, String centerPhone, String centerState, String centerZip){
+		this.centerAddress1 = centerAddress1;
+		this.centerAddress2 = centerAddress2;
+		this.centerCity = centerCity;
+		this.centerContactFirstName = centerContactFirstName;
+		this.centerContactJobTitle = centerContactJobTitle;
+		this.centerContactLastName = centerContactLastName;
+		this.centerContactTitle = centerContactTitle;
+		this.centerFax = centerFax;
+		this.centerId = centerId; 
+		this.centerName = centerName; 
+		this.centerNote = centerNote; 
+		this.centerNumber = centerNumber; 
+		this.centerPhone = centerPhone; 
+		this.centerState = centerState; 
+		this.centerZip = centerZip;
+	}
+	
+	//Getter and Setters	
 	public int get_cid (){
 		return cid;
 	}
