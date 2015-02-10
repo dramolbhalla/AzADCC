@@ -14,6 +14,8 @@ import javax.persistence.*;
 @Table(name = "USER_PASSWORD", catalog = "userdb", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "USERPASSWORD_PASSWORD"),
 		@UniqueConstraint(columnNames = "USERPASSWORD_PASSWORDSTRING") })
+@DiscriminatorValue("USER_PASSWORD")
+@PrimaryKeyJoinColumn(name="USER_ID")
 public class UserPassword implements Serializable{
 	
 	private User user;
@@ -48,7 +50,7 @@ public class UserPassword implements Serializable{
 	 * @return
 	 */
 	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
+	@PrimaryKeyJoinColumn(name="USER_ID")
 	public User get_User(){
 		return user;
 	}

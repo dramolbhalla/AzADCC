@@ -30,6 +30,8 @@ import javax.persistence.*;
 		@UniqueConstraint(columnNames = "USERPERSONALINFO_SSN"),
 		@UniqueConstraint(columnNames = "USERPERSONALINFO_BIRTHDATE"),
 		@UniqueConstraint(columnNames = "USERPERSONALINFO_EMAIL") })
+@DiscriminatorValue("USER_PERSONAL_INFO")
+@PrimaryKeyJoinColumn(name="USER_ID")
 public class UserPersonalInfo implements Serializable{
 	
 	
@@ -130,7 +132,7 @@ public class UserPersonalInfo implements Serializable{
 	 * @return
 	 */
 	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
+	@PrimaryKeyJoinColumn(name="USER_ID")
 	public User get_User(){
 		return user;
 	}

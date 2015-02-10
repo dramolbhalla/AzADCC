@@ -5,6 +5,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,6 +21,8 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "USER_NOTE", catalog = "userdb", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "USERNOTE_NOTE"),
 		@UniqueConstraint(columnNames = "USERNOTE_USERNOTE") })
+@DiscriminatorValue("USER_NOTE")
+@PrimaryKeyJoinColumn(name="USER_ID")
 public class UserNote implements Serializable{
 	
 	private User user;
@@ -47,7 +50,7 @@ public class UserNote implements Serializable{
 	 * @return
 	 */
 	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
+	@PrimaryKeyJoinColumn(name="USER_ID")
 	public User get_User(){
 		return user;
 	}

@@ -4,33 +4,29 @@
  */
 package persistance.entities.Subjects;
 
+import persistance.entities.Clinics.*;
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
 
 
-@Entity
-@Table(name="SUBJECT")
-public class Subject {
+@Entity 
+@Table(name = "SUBJECT", catalog = "subjectdb", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "SUBJECT_ID"),
+		@UniqueConstraint(columnNames = "SUBJECT_SUBJECTID"),
+		@UniqueConstraint(columnNames = "SUBJECT_CLINICID") })
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorValue("SUBJECT")
+public class Subject implements Serializable{
 	
-	//Subject ID is the primary key for table, 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int sid;
-	
-	@Column(name="subjectId")
 	private String subjectId;
-	
-	@Column(name="clinicId")
-	private String clinicId;
-	
-	@OneToMany
+	private Clinic clinic;
 	private Set<SubjectLog> subjectLogs;
-	
-	@OneToMany
 	private Set<SubjectNote> subjectNotes;
-	
-	@OneToOne
 	private SubjectPersonalInfo subjectPersonalInfo;
 	
 	/**
@@ -45,22 +41,29 @@ public class Subject {
 	 * @param subjectId
 	 * @param clinicId
 	 */
-	public Subject(String subjectId, String clinicId){
-		this.clinicId = clinicId;
+	public Subject(String subjectId){
 		this.subjectId = subjectId;
+	}
+	
+	public Subject(String subjectId, Clinic clinic){
+		this.subjectId = subjectId;
+		this.clinic = clinic;
 	}
 	
 	/**
 	 * 
 	 * @return
 	 */
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "SUBJECT_ID", unique = true, nullable = false)
 	public int get_sid(){
 	     return sid;
 	}
 	
 	/**
 	 * 
-	 * @param uid
+	 * @param sid
 	 */
 	public void set_sid(int sid){
 		this.sid = sid;
@@ -70,6 +73,7 @@ public class Subject {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECT_SUBJECTID", unique = true, nullable = false, length = 10)
 	public String get_subjectId(){
 		return subjectId;
 	}
@@ -86,38 +90,42 @@ public class Subject {
 	 * 
 	 * @return
 	 */
-	public String get_clinicId(){
-		return clinicId;
+	@OneToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn(name="CLINIC_ID")
+	public Clinic get_Clinic(){
+		return clinic;
 	}
 	
 	/**
 	 * 
-	 * @param clinicId
+	 * @param clinic
 	 */
-	public void set_clinicId(String clinicId){
-		this.clinicId = clinicId;
-	}
-	
-	/**
-	 * 
-	 * @param subjectLog
-	 */
-	public void set_SubjectLog(Set<SubjectLog> subjectLog){
-		this.subjectLogs = subjectLog;
+	public void set_Clinic(Clinic clinic){
+		this.clinic = clinic;
 	}
 	
 	/**
 	 * 
 	 * @return
 	 */
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "SUBJECT")
 	public Set<SubjectLog> get_SubjectLog(){
 		return subjectLogs;
 	}
 	
 	/**
 	 * 
+	 * @param subjectLog
+	 */
+	public void set_SubjectLog(Set<SubjectLog> subjectLogs){
+		this.subjectLogs = subjectLogs;
+	}
+	
+	/**
+	 * 
 	 * @return
 	 */
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "SUBJECT")
 	public Set<SubjectNote> get_SubjectNotes () {
 		return subjectNotes;
 	}
@@ -134,6 +142,7 @@ public class Subject {
 	 * 
 	 * @return
 	 */
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "SUBJECT", cascade = CascadeType.ALL)
 	public SubjectPersonalInfo get_SubjectPersonalInfo(){
 		return subjectPersonalInfo;
 	}

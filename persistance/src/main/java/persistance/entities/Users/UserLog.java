@@ -10,6 +10,8 @@ import javax.persistence.*;
 @Table(name = "USER_LOG", catalog = "userdb", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "USERLOG_LOG"),
 		@UniqueConstraint(columnNames = "USERLOG_USERLOG") })
+@DiscriminatorValue("USER_LOG")
+@PrimaryKeyJoinColumn(name="USER_ID")
 public class UserLog implements Serializable{
 	
 	private User user;
@@ -43,7 +45,7 @@ public class UserLog implements Serializable{
 	 * @return
 	 */
 	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
+	@PrimaryKeyJoinColumn(name="USER_ID")
 	public User get_User(){
 		return user;
 	}

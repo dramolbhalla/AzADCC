@@ -20,6 +20,8 @@ import javax.persistence.*;
 		@UniqueConstraint(columnNames = "USERWORKINFO_WORKPHONE"),
 		@UniqueConstraint(columnNames = "USERWORKINFO_EXTENSION"),
 		@UniqueConstraint(columnNames = "USERWORKINFO_EMAIL") })
+@DiscriminatorValue("USER_WORKL_INFO")
+@PrimaryKeyJoinColumn(name="USER_ID")
 public class UserWorkInfo implements Serializable{
 	
 	private User user;
@@ -98,7 +100,7 @@ public class UserWorkInfo implements Serializable{
 	 * @return
 	 */
 	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
+	@PrimaryKeyJoinColumn(name="USER_ID")
 	public User get_User(){
 		return user;
 	}

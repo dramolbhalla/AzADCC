@@ -25,6 +25,8 @@ import javax.persistence.*;
 		@UniqueConstraint(columnNames = "USEREMERGENCYCONTACT_HOMEPHONE"),
 		@UniqueConstraint(columnNames = "USEREMERGENCYCONTACT_MOBILEPHONE"),
 		@UniqueConstraint(columnNames = "USEREMERGENCYCONTACT_EMAIL") })
+@DiscriminatorValue("USER_EMERGENCY_CONTACT")
+@PrimaryKeyJoinColumn(name="USER_ID")
 public class UserEmergencyContact implements Serializable {
 	
 	private User user;
@@ -102,7 +104,7 @@ public class UserEmergencyContact implements Serializable {
 	 * @return
 	 */
 	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
+	@PrimaryKeyJoinColumn(name="USER_ID")
 	public User get_User(){
 		return user;
 	}
