@@ -4,71 +4,54 @@
  */
 package persistance.entities.Users;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.io.Serializable;
+
 import javax.persistence.*;
 
-@Entity 
-@Table(name="USER_PERSONAL_INFO")
-public class UserPersonalInfo {
+@Table(name = "USER_PERSONAL_INFO", catalog = "userdb", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_PERSONALINFO"),
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_TITLE"),
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_FIRSTNAME"),
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_MIDDLENAME"),
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_LASTNAME"),
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_INITIALS"),
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_DEPARTMENT"),
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_PROFTITLE"),
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_DESIGNATIONS"),
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_ADDRESS1"),
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_ADDRESS2"),
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_CITY"),
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_STATE"),
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_ZIP"),
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_HOMEPHONE"),
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_MOBILEPHONE"),
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_SSN"),
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_BIRTHDATE"),
+		@UniqueConstraint(columnNames = "USERPERSONALINFO_EMAIL") })
+public class UserPersonalInfo implements Serializable{
 	
-	@OneToOne
+	
 	private User user;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int personalInfo;
-	
-	@Column(name="title")
 	private String title;
-	
-	@Column(name="firstName")
 	private String firstName;
-	
-	@Column(name="middleName")
 	private String middleName;
-	
-	@Column(name="lastName")
 	private String lastName;
-	
-	@Column(name="initials")
 	private String initials;
-	
-	@Column(name="department")
 	private String department; 
-	
-	@Column(name="profTitle")
 	private String profTitle;
-	
-	@Column(name="designations")
 	private String designations;
-	
-	@Column(name="address1")
 	private String address1; 
-	
-	@Column(name="address2")
 	private String address2; 
-	
-	@Column(name="city")
 	private String city; 
-	
-	@Column(name="state")
 	private String state; 
-	
-	@Column(name="zip")
 	private String zip;  
-	
-	@Column(name="homePhone")
 	private String homePhone; 
-	
-	@Column(name="mobilePhone")
 	private String mobilePhone; 
-	
-	@Column(name="ssn")
 	private String ssn;  
-	
-	@Column(name="birthdate")
 	private String birthdate;
-	
-	@Column(name="email")
 	private String email; 
 	
 	/**
@@ -119,12 +102,35 @@ public class UserPersonalInfo {
 		this.zip = zip;		
 	}
 	
+	public UserPersonalInfo(String address1, String address2, String birthdate, String city, String department, String designations, String email, String firstName, String homePhone, String initials, String lastName, String middleName, String mobilePhone, String profTitle, String ssn, String state, String title, String zip, User user){
+		this.address1 = address1;
+		this.address2 = address2;
+		this.birthdate = birthdate;
+		this.city = city;
+		this.department = department;
+		this.email = email;
+		this.firstName = firstName;
+		this.homePhone = homePhone;
+		this.initials = initials;
+		this.lastName = lastName;
+		this.middleName = middleName;
+		this.mobilePhone = mobilePhone;
+		this.profTitle = profTitle;
+		this.ssn = ssn;
+		this.state = state;
+		this.title = title;
+		this.zip = zip;
+		this.user = user;
+	}
+	
 	//Getter and Setters
 	
 	/**
 	 * 
 	 * @return
 	 */
+	@OneToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn
 	public User get_User(){
 		return user;
 	}
@@ -141,6 +147,9 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "USERPERSONALINFO_PERSONALINFO", unique = true, nullable = false)
 	public int get_personalInfo(){
 		return personalInfo;
 	}
@@ -157,6 +166,7 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERPERSONALINFO_TITLE", unique = true, nullable = true)
 	public String get_title(){
 		return title;
 	}
@@ -173,6 +183,7 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERPERSONALINFO_FIRSTNAME", unique = true, nullable = false)
 	public String get_firstName(){
 		return firstName;
 	}
@@ -189,6 +200,7 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERPERSONALINFO_MIDDLENAME", unique = true, nullable = true)
 	public String get_middleName(){
 		return middleName;
 	}
@@ -205,6 +217,7 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERPERSONALINFO_LASTNAME", unique = true, nullable = false)
 	public String get_lastName(){
 		return lastName;
 	}
@@ -221,6 +234,7 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERPERSONALINFO_INITIALS", unique = true, nullable = false)
 	public String get_initials(){
 		return initials;
 	}
@@ -237,6 +251,7 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERPERSONALINFO_DEPARTMENT", unique = true, nullable = true)
 	public String get_department(){
 		return department;
 	}
@@ -253,6 +268,7 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERPERSONALINFO_PROFTITLE", unique = true, nullable = true)
 	public String get_profTitle (){
 		return profTitle;
 	}
@@ -269,6 +285,7 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERPERSONALINFO_DESIGNATIONS", unique = true, nullable = true)
 	public String get_designations (){
 		return designations;
 	}
@@ -285,6 +302,7 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERPERSONALINFO_ADDRESS1", unique = true, nullable = false)
 	public String get_address1 () {
 		return address1;
 	}
@@ -301,6 +319,7 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERPERSONALINFO_ADDRESS2", unique = true, nullable = true)
 	public String get_address2 () {
 		return address2;
 	}
@@ -317,6 +336,7 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERPERSONALINFO_CITY", unique = true, nullable = false)
 	public String get_city () {
 		return city;
 	}
@@ -333,6 +353,7 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERPERSONALINFO_STATE", unique = true, nullable = false)
 	public String get_state () {
 		return state;
 	}
@@ -349,6 +370,7 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERPERSONALINFO_ZIP", unique = true, nullable = false, length = 9)
 	public String get_zip () {
 		return zip;
 	}
@@ -365,6 +387,7 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERPERSONALINFO_HOMEPHONE", unique = true, nullable = false, length = 10)
 	public String get_homePhone () {
 		return homePhone;
 	}
@@ -381,6 +404,7 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERPERSONALINFO_MOBILEPHONE", unique = true, nullable = true)
 	public String get_mobilePhone () {
 		return mobilePhone;
 	}
@@ -397,6 +421,7 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERPERSONALINFO_SSN", unique = true, nullable = false, length = 9)
 	public String get_ssn () {
 		return ssn;
 	}
@@ -413,6 +438,7 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERPERSONALINFO_BIRTHDATE", unique = true, nullable = false, length = 8)
 	public String get_birthdate () {
 		return birthdate;
 	}
@@ -429,6 +455,7 @@ public class UserPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERPERSONALINFO_EMAIL", unique = true, nullable = true)
 	public String get_email () {
 		return email;
 	}

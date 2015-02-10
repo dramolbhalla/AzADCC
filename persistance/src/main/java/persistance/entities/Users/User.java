@@ -4,6 +4,8 @@
  */
 package persistance.entities.Users;
 
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import persistance.entities.Subjects.*;
@@ -11,35 +13,26 @@ import persistance.entities.Centers.*;
 import persistance.entities.Clinics.*;
 
 import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Entity;
 
 @Entity 
-@Table(name="USER")
-public class User {
+@Table(name = "USER", catalog = "userdb", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "USER_ID"),
+		@UniqueConstraint(columnNames = "USER_USERID"),
+		@UniqueConstraint(columnNames = "USER_ACCESSLEVEL") })
+public class User implements Serializable {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int uid;
-	
-	@Column(name="userId")
 	private String userId;
-	
-	@Column(name="accessLevel")
 	private int accessLevel;
-	
-	@OneToMany
-	private Set<Subject> subjects;
-	
-	@OneToMany
-	private Set<Center> centers;
-	
-	@OneToMany
-	private Set<Clinic> clinics;
-	
-	@OneToMany
-	private Set<UserNote> userNotes;
-	
-	@OneToMany
-	private Set<UserLog> userLogs;
+	private Set<Subject> subjects = new HashSet<Subject>(0);
+	private Set<Center> centers = new HashSet<Center>(0);
+	private Set<Clinic> clinics = new HashSet<Clinic>(0);
+	private Set<UserNote> userNotes = new HashSet<UserNote>(0);
+	private Set<UserLog> userLogs = new HashSet<UserLog>(0);
+	private UserPassword userPassword;
 	
 	public User(){
 		
@@ -49,12 +42,24 @@ public class User {
 		this.userId = userId;
 		this.accessLevel = accessLevel;
 	}
-	 
+	
+	public User(String userId, int accessLevel, Set<Subject> subjects, Set<Center> centers, Set<Clinic> clinics, Set<UserNote> userNotes, Set<UserLog> userLogs){
+		this.userId = userId;
+		this.accessLevel = accessLevel;
+		this.subjects = subjects;
+		this.centers = centers;
+		this.clinics = clinics;
+		this.userNotes = userNotes;
+		this.userLogs = userLogs;
+	}
 	
 	/**
 	 * 
 	 * @return
 	 */
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "USER_ID", unique = true, nullable = false)
 	public int get_uid(){
 	     return uid;
 	}
@@ -71,6 +76,7 @@ public class User {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USER_USERID", unique = true, nullable = false, length = 10)
 	public String get_userId(){
 		return userId;
 	}
@@ -89,6 +95,7 @@ public class User {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USER_ACCESSLEVEL", unique = true, nullable = false, length = 2)
 	public int get_accessLevel (){
 		return accessLevel;
 	}
@@ -105,6 +112,7 @@ public class User {
 	 * 
 	 * @return
 	 */
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "USER")
 	public Set<Subject> get_Subject () {
 		return subjects;
 	}
@@ -121,6 +129,7 @@ public class User {
 	 * 
 	 * @return
 	 */
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "USER")
 	public Set<Center> get_Center () {
 		return centers;
 	}
@@ -137,6 +146,7 @@ public class User {
 	 * 
 	 * @return
 	 */
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "USER")
 	public Set<Clinic> get_Clinic () {
 		return clinics;
 	}
@@ -153,6 +163,7 @@ public class User {
 	 * 
 	 * @return
 	 */
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "USER")
 	public Set<UserNote> get_UserNote () {
 		return userNotes;
 	}
@@ -169,6 +180,7 @@ public class User {
 	 * 
 	 * @return
 	 */
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "USER")
 	public Set<UserLog> get_UserLog () {
 		return userLogs;
 	}
@@ -179,5 +191,22 @@ public class User {
 	 */
 	public void set_UserLog (Set<UserLog> userLogs){
 		this.userLogs = userLogs;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "USER", cascade = CascadeType.ALL)
+	public UserPassword get_UserPassword () {
+		return userPassword;
+	}
+	
+	/**
+	 * 
+	 * @param userLogs
+	 */
+	public void set_UserPassword (UserPassword userPassword){
+		this.userPassword = userPassword;
 	}
 }

@@ -4,20 +4,20 @@
  */
 package persistance.entities.Users;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.io.Serializable;
+
 import javax.persistence.*;
 
-@Entity
-@Table(name="USER_PASSWORD")
-public class UserPassword {
+@Entity 
+@Table(name = "USER_PASSWORD", catalog = "userdb", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "USERPASSWORD_PASSWORD"),
+		@UniqueConstraint(columnNames = "USERPASSWORD_PASSWORDSTRING") })
+public class UserPassword implements Serializable{
 	
-	@OneToOne
 	private User user;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int password;
-	
-	@Column(name="passwordString")
 	private String passwordString;
 		
 	/**
@@ -35,11 +35,20 @@ public class UserPassword {
 		this.passwordString = passwordString;
 	}
 	
+	public UserPassword(String passwordString, User user){
+		this.passwordString = passwordString;
+		this.user = user;
+	}
+	
+	
+	
 	//Getter and Setters
 	/**
 	 * 
 	 * @return
 	 */
+	@OneToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn
 	public User get_User(){
 		return user;
 	}
@@ -56,6 +65,9 @@ public class UserPassword {
 	 * 
 	 * @return
 	 */
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "USERPASSWORD_PASSWORD", unique = true, nullable = false)
 	public int get_password(){
 		return password;
 	}
@@ -72,6 +84,7 @@ public class UserPassword {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERNPASSWORD_PASSWORDSTRING", unique = true, nullable = false)
 	public String get_passwordString(){
 		return passwordString;
 	}

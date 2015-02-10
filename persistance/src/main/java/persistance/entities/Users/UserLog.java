@@ -1,19 +1,19 @@
 package persistance.entities.Users;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.io.Serializable;
+
 import javax.persistence.*;
 
-@Entity
-@Table(name="USER_LOG")
-public class UserLog {
+@Entity 
+@Table(name = "USER_LOG", catalog = "userdb", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "USERLOG_LOG"),
+		@UniqueConstraint(columnNames = "USERLOG_USERLOG") })
+public class UserLog implements Serializable{
 	
-	@OneToOne
 	private User user;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int log;
-	
-	@Column(name="userLog")
 	private String userLog;
 	
 	/**
@@ -30,6 +30,11 @@ public class UserLog {
 	public UserLog(String userLog){
 		this.userLog = userLog;
 	}
+	
+	public UserLog(String userLog, User user){
+		this.userLog = userLog;
+		this.user = user;
+	}
 
 	//Getters and Setters
 	
@@ -37,6 +42,8 @@ public class UserLog {
 	 * 
 	 * @return
 	 */
+	@OneToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn
 	public User get_User(){
 		return user;
 	}
@@ -53,6 +60,9 @@ public class UserLog {
 	 * 
 	 * @return
 	 */
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "USERLOG_LOG", unique = true, nullable = false)
 	public int get_log(){
 	     return log;
 	}
@@ -69,6 +79,7 @@ public class UserLog {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERLOG_USERLOG", unique = true, nullable = false)
 	public String get_userLog(){
 		return userLog;
 	}

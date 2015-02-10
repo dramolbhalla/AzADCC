@@ -5,7 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
-  	<module>Persistance Layer</module>
+  	
   	<module>persistance</module>
   </modules>
 </project>

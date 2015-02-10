@@ -4,53 +4,42 @@
  */
 package persistance.entities.Users;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.io.Serializable;
+
 import javax.persistence.*;
 
-@Entity
-@Table(name="USER_EMERGENCY_CONTACT")
-public class UserEmergencyContact {
+@Entity 
+@Table(name = "USER_EMERGENCY_CONTACT", catalog = "userdb", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "USEREMERGENCYCONTACT_EMERGENCYCONTACT"),
+		@UniqueConstraint(columnNames = "USEREMERGENCYCONTACT_TITLE"),
+		@UniqueConstraint(columnNames = "USEREMERGENCYCONTACT_FIRSTNAME"),
+		@UniqueConstraint(columnNames = "USEREMERGENCYCONTACT_MIDDLENAME"),
+		@UniqueConstraint(columnNames = "USEREMERGENCYCONTACT_LASTNAME"),
+		@UniqueConstraint(columnNames = "USEREMERGENCYCONTACT_ADDRESS1"),
+		@UniqueConstraint(columnNames = "USEREMERGENCYCONTACT_ADDRESS2"),
+		@UniqueConstraint(columnNames = "USEREMERGENCYCONTACT_CITY"),
+		@UniqueConstraint(columnNames = "USEREMERGENCYCONTACT_STATE"),
+		@UniqueConstraint(columnNames = "USEREMERGENCYCONTACT_ZIP"),
+		@UniqueConstraint(columnNames = "USEREMERGENCYCONTACT_HOMEPHONE"),
+		@UniqueConstraint(columnNames = "USEREMERGENCYCONTACT_MOBILEPHONE"),
+		@UniqueConstraint(columnNames = "USEREMERGENCYCONTACT_EMAIL") })
+public class UserEmergencyContact implements Serializable {
 	
-	@OneToOne
 	private User user;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int emergencyContact;
-	
-	@Column(name="title")
 	String title;
-	
-	@Column(name="firstName")
 	String firstName;
-	
-	@Column(name="middleName")
 	String middleName;
-	
-	@Column(name="lastName")
 	String lastName;
-	
-	@Column(name="address1")
 	String address1; 
-	
-	@Column(name="address2")
 	String address2; 
-	
-	@Column(name="city")
 	String city; 
-	
-	@Column(name="state")
 	String state; 
-	
-	@Column(name="zip")
 	String zip;  
-	
-	@Column(name="homePhone")
 	String homePhone; 
-	
-	@Column(name="mobilePhone")
 	String mobilePhone;
-	
-	@Column(name="email")
 	String email;
 	
 	/**
@@ -90,12 +79,30 @@ public class UserEmergencyContact {
 		this.zip = zip;
 	}
 	
+	public UserEmergencyContact(String address1, String address2, String city, String email, String firstName, String homePhone, String lastName, String middleName, String mobilePhone, String state, String title, String zip, User user){
+		this.address1 = address1;
+		this.address2 = address2;
+		this.city = city;
+		this.email = email;
+		this.firstName = firstName;
+		this.homePhone = homePhone;
+		this.lastName = lastName;
+		this.middleName = middleName;
+		this.mobilePhone = mobilePhone;
+		this.state = state;
+		this.title = title;
+		this.zip = zip;
+		this.user = user;
+	}
+	
 	//Getters and Setters
 	
 	/**
 	 * 
 	 * @return
 	 */
+	@OneToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn
 	public User get_User(){
 		return user;
 	}
@@ -112,6 +119,9 @@ public class UserEmergencyContact {
 	 * 
 	 * @return
 	 */
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "USEREMERGENCYCONTACT_EMERGENCYCONTACT", unique = true, nullable = false)
 	public int get_emergencyContact(){
 		return emergencyContact;
 	}
@@ -128,6 +138,7 @@ public class UserEmergencyContact {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USEREMERGENCYCONTACT_TITLE", unique = true, nullable = false, length = 4)
 	public String get_title(){
 		return title;
 	}
@@ -144,6 +155,7 @@ public class UserEmergencyContact {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USEREMERGENCYCONTACT_FIRSTNAME", unique = true, nullable = false)
 	public String get_firstName(){
 		return firstName;
 	}
@@ -160,6 +172,7 @@ public class UserEmergencyContact {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USEREMERGENCYCONTACT_MIDDLENAME", unique = true, nullable = true)
 	public String get_middleName(){
 		return middleName;
 	}
@@ -176,6 +189,7 @@ public class UserEmergencyContact {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USEREMERGENCYCONTACT_LASTNAME", unique = true, nullable = false)
 	public String get_lastName(){
 		return lastName;
 	}
@@ -191,7 +205,7 @@ public class UserEmergencyContact {
 	/**
 	 * 
 	 * @return
-	 */
+	 */	@Column(name = "USEREMERGENCYCONTACT_ADDRESS1", unique = true, nullable = false)
 	public String get_address1 () {
 		return address1;
 	}
@@ -208,6 +222,7 @@ public class UserEmergencyContact {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USEREMERGENCYCONTACT_ADDRESS2", unique = true, nullable = true)
 	public String get_address2 () {
 		return address2;
 	}
@@ -224,6 +239,7 @@ public class UserEmergencyContact {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USEREMERGENCYCONTACT_CITY", unique = true, nullable = false)
 	public String get_city () {
 		return city;
 	}
@@ -240,6 +256,7 @@ public class UserEmergencyContact {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USEREMERGENCYCONTACT_STATE", unique = true, nullable = false)
 	public String get_state () {
 		return state;
 	}
@@ -256,6 +273,7 @@ public class UserEmergencyContact {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USEREMERGENCYCONTACT_ZIP", unique = true, nullable = false, length = 10)
 	public String get_zip () {
 		return zip;
 	}
@@ -272,6 +290,7 @@ public class UserEmergencyContact {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USEREMERGENCYCONTACT_HOMEPHONE", unique = true, nullable = false, length = 10)
 	public String get_homePhone () {
 		return homePhone;
 	}
@@ -288,6 +307,7 @@ public class UserEmergencyContact {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USEREMERGENCYCONTACT_MOBILEPHONE", unique = true, nullable = true, length = 10)
 	public String get_mobilePhone () {
 		return mobilePhone;
 	}
@@ -304,6 +324,7 @@ public class UserEmergencyContact {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USEREMERGENCYCONTACT_EMAIL", unique = true, nullable = true)
 	public String get_email () {
 		return email;
 	}

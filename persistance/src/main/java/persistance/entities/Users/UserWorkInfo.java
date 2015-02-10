@@ -4,44 +4,34 @@
  */
 package persistance.entities.Users;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.io.Serializable;
+
 import javax.persistence.*;
 
-@Entity
-@Table(name="USER_WORK_INFO")
-public class UserWorkInfo {
+@Table(name = "USER_WORKL_INFO", catalog = "userdb", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "USERWORKINFO_WORKINFO"),
+		@UniqueConstraint(columnNames = "USERWORKINFO_ADDRESS1"),
+		@UniqueConstraint(columnNames = "USERWORKINFO_ADDRESS2"),
+		@UniqueConstraint(columnNames = "USERWORKINFO_CITY"),
+		@UniqueConstraint(columnNames = "USERWORKINFO_STATE"),
+		@UniqueConstraint(columnNames = "USERWORKINFO_ZIP"),
+		@UniqueConstraint(columnNames = "USERWORKINFO_WORKPHONE"),
+		@UniqueConstraint(columnNames = "USERWORKINFO_EXTENSION"),
+		@UniqueConstraint(columnNames = "USERWORKINFO_EMAIL") })
+public class UserWorkInfo implements Serializable{
 	
-	@OneToOne
 	private User user;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int workInfo;
-
-	@Column(name="address1")
 	String address1; 
-	
-	@Column(name="address2")
 	String address2;
-	
-	@Column(name="city")
 	String city; 
-	
-	@Column(name="state")
 	String state; 
-	
-	@Column(name="zip")
 	String zip; 
-	
-	@Column(name="workPhone")
 	String workPhone; 
-	
-	@Column(name="extension")
 	String extension; 
-	
-	@Column(name="fax")
 	String fax; 
-	
-	@Column(name="email")
 	String email;  
 	
 	/**
@@ -72,8 +62,33 @@ public class UserWorkInfo {
 		this.zip = zip;
 		this.workPhone = workPhone;
 		this.extension = extension;
+		this.fax = fax;	
+	}
+	
+	/**
+	 * 
+	 * @param address1
+	 * @param address2
+	 * @param city
+	 * @param email
+	 * @param state
+	 * @param zip
+	 * @param workPhone
+	 * @param extension
+	 * @param fax
+	 * @param user
+	 */
+	public UserWorkInfo(String address1, String address2, String city, String email, String state, String zip, String workPhone, String extension, String fax, User user){
+		this.address1 = address1;
+		this.address2 = address2;
+		this.city = city;
+		this.email = email;
+		this.state = state;
+		this.zip = zip;
+		this.workPhone = workPhone;
+		this.extension = extension;
 		this.fax = fax;
-		
+		this.user = user;
 	}
 	
 	//Getter and Setters
@@ -82,6 +97,8 @@ public class UserWorkInfo {
 	 * 
 	 * @return
 	 */
+	@OneToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn
 	public User get_User(){
 		return user;
 	}
@@ -98,6 +115,9 @@ public class UserWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "USERWORKINFO_WORKINFO", unique = true, nullable = false)
 	public int get_workInfo(){
 		return workInfo;
 	}
@@ -114,6 +134,7 @@ public class UserWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERWORKINFO_ADDRESS1", unique = true, nullable = false)
 	public String get_address1 () {
 		return address1;
 	}
@@ -130,6 +151,7 @@ public class UserWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERWORKINFO_ADDRESS2", unique = true, nullable = true)
 	public String get_address2 () {
 		return address2;
 	}
@@ -146,6 +168,7 @@ public class UserWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERWORKINFO_CITY", unique = true, nullable = false)
 	public String get_city () {
 		return city;
 	}
@@ -162,6 +185,7 @@ public class UserWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERWORKINFO_STATE", unique = true, nullable = false)
 	public String get_state () {
 		return state;
 	}
@@ -178,6 +202,7 @@ public class UserWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERWORKINFO_ZIP", unique = true, nullable = false, length = 9)
 	public String get_zip () {
 		return zip;
 	}
@@ -194,6 +219,7 @@ public class UserWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERWORKINFO_WORKPHONE", unique = true, nullable = false, length = 10)
 	public String get_workPhone () {
 		return workPhone;
 	}
@@ -210,6 +236,7 @@ public class UserWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERWORKINFO_EXTENSION", unique = true, nullable = true)
 	public String get_extension () {
 		return extension;
 	}
@@ -226,6 +253,7 @@ public class UserWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERWORKINFO_FAX", unique = true, nullable = true)
 	public String get_fax () {
 		return fax;
 	}
@@ -242,6 +270,7 @@ public class UserWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "USERWORKINFO_EMAIL", unique = true, nullable = true)
 	public String get_email () {
 		return email;
 	}
