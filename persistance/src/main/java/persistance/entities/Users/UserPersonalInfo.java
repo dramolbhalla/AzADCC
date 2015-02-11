@@ -133,7 +133,7 @@ public class UserPersonalInfo implements Serializable{
 	 */
 	@OneToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn(name="USER_ID")
-	public User get_User(){
+	public User get_UserId(){
 		return user;
 	}
 	
@@ -141,7 +141,7 @@ public class UserPersonalInfo implements Serializable{
 	 * 
 	 * @param user
 	 */
-	public void set_User(User user){
+	public void set_UserId(User user){
 		this.user = user;
 	}
 	

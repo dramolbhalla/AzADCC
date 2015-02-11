@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-@Table(name = "USER_WORKL_INFO", catalog = "userdb", uniqueConstraints = {
+@Table(name = "USER_WORK_INFO", catalog = "userdb", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "USERWORKINFO_WORKINFO"),
 		@UniqueConstraint(columnNames = "USERWORKINFO_ADDRESS1"),
 		@UniqueConstraint(columnNames = "USERWORKINFO_ADDRESS2"),
@@ -19,6 +19,7 @@ import javax.persistence.*;
 		@UniqueConstraint(columnNames = "USERWORKINFO_ZIP"),
 		@UniqueConstraint(columnNames = "USERWORKINFO_WORKPHONE"),
 		@UniqueConstraint(columnNames = "USERWORKINFO_EXTENSION"),
+		@UniqueConstraint(columnNames = "USERWORKINFO_FAX"),
 		@UniqueConstraint(columnNames = "USERWORKINFO_EMAIL") })
 @DiscriminatorValue("USER_WORKL_INFO")
 @PrimaryKeyJoinColumn(name="USER_ID")

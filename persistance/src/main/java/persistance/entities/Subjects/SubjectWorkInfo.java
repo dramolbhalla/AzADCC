@@ -4,50 +4,48 @@
  */
 package persistance.entities.Subjects;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.io.Serializable;
+
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-@Entity
-@Table(name="SUBJECT_WORK_INFO")
-public class SubjectWorkInfo {
+@Table(name = "SUBJECT_WORK_INFO", catalog = "subjectdb", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "SUBJECTWORKINFO_WORKINFO"),
+		@UniqueConstraint(columnNames = "SUBJECTWORKINFO_ADDRESS1"),
+		@UniqueConstraint(columnNames = "SUBJECTWORKINFO_ADDRESS2"),
+		@UniqueConstraint(columnNames = "SUBJECTWORKINFO_CITY"),
+		@UniqueConstraint(columnNames = "SUBJECTWORKINFO_STATE"),
+		@UniqueConstraint(columnNames = "SUBJECTWORKINFO_ZIP"),
+		@UniqueConstraint(columnNames = "SUBJECTWORKINFO_WORKPHONE"),
+		@UniqueConstraint(columnNames = "SUBJECTWORKINFO_EXTENSION"),
+		@UniqueConstraint(columnNames = "SUBJECTWORKINFO_FAX"),
+		@UniqueConstraint(columnNames = "SUBJECTWORKINFO_EMAIL") })
+@DiscriminatorValue("SUBJECT_WORKL_INFO")
+@PrimaryKeyJoinColumn(name="SUBJECT_ID")
+public class SubjectWorkInfo implements Serializable{
 	
-	@OneToOne
+	
 	private Subject subjectId;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int workInfo;
-	
-	@Column(name="address1")
 	private String address1; 
-	
-	@Column(name="address2")
 	private String address2; 
-	
-	@Column(name="city")
 	private String city; 
-	
-	@Column(name="state")
 	private String state; 
-	
-	@Column(name="zip")
 	private String zip; 
-	
-	@Column(name="workPhone")
 	private String workPhone; 
-	
-	@Column(name="extension")
 	private String extension; 
-	
-	@Column(name="fax")
 	private String fax; 
-	
-	@Column(name="email")
 	private String email; 
 	
 	/**
@@ -80,18 +78,37 @@ public class SubjectWorkInfo {
 		this.fax = fax;
 		this.email = email;
 	}
+	
+	public SubjectWorkInfo(String address1, String address2, String city, String state, String zip, String workPhone, String extension, String fax, String email, Subject subjectId){
+		this.address1 = address1;
+		this.address2 = address2;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.workPhone = workPhone;
+		this.extension = extension;
+		this.fax = fax;
+		this.email = email;
+		this.subjectId = subjectId;
+	}
 		
+	
+	// ++------------------ getters and setters ------------------++
+	
+	
 	/**
 	 * 
 	 * @return
 	 */
+	@OneToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn(name="SUBJECT_ID")
 	public Subject get_subjectId(){
 		return subjectId;
 	}
 	
 	/**
 	 * 
-	 * @param userId
+	 * @param subjectId
 	 */
 	public void set_subjectId(Subject subjectId){
 		this.subjectId = subjectId;
@@ -101,6 +118,26 @@ public class SubjectWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "SUBJECTWORKINFO_WORKINFO", unique = true, nullable = false)
+	public int get_workInfo(){
+		return workInfo;
+	}
+	
+	/**
+	 * 
+	 * @param workInfo
+	 */
+	public void set_workInfo(int workInfo){
+		this.workInfo = workInfo;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	@Column(name = "SUBJECTWORKINFO_ADDRESS1", unique = true, nullable = false)
 	public String get_address1 () {
 		return address1;
 	}
@@ -117,6 +154,7 @@ public class SubjectWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTWORKINFO_ADDRESS2", unique = true, nullable = true)
 	public String get_address2 () {
 		return address2;
 	}
@@ -133,6 +171,7 @@ public class SubjectWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTWORKINFO_CITY", unique = true, nullable = false)
 	public String get_city () {
 		return city;
 	}
@@ -149,6 +188,7 @@ public class SubjectWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTWORKINFO_STATE", unique = true, nullable = false)
 	public String get_state () {
 		return state;
 	}
@@ -165,6 +205,7 @@ public class SubjectWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTWORKINFO_ZIP", unique = true, nullable = false, length = 9)
 	public String get_zip () {
 		return zip;
 	}
@@ -181,6 +222,7 @@ public class SubjectWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTWORKINFO_WORKPHONE", unique = true, nullable = false, length = 10)
 	public String get_workPhone () {
 		return workPhone;
 	}
@@ -197,6 +239,7 @@ public class SubjectWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTWORKINFO_EXTENSION", unique = true, nullable = true)
 	public String get_extension () {
 		return extension;
 	}
@@ -213,6 +256,7 @@ public class SubjectWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTWORKINFO_FAX", unique = true, nullable = true)
 	public String get_fax () {
 		return fax;
 	}
@@ -229,6 +273,7 @@ public class SubjectWorkInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTWORKINFO_EMAIL", unique = true, nullable = true)
 	public String get_email () {
 		return email;
 	}

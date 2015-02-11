@@ -21,7 +21,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity 
-@Table(name = "SUBJECT_EMERGENCY_CONTACT", catalog = "SUBJECTdb", uniqueConstraints = {
+@Table(name = "SUBJECT_EMERGENCY_CONTACT", catalog = "subjectdb", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "SUBJECTEMERGENCYCONTACT_EMERGENCYCONTACT"),
 		@UniqueConstraint(columnNames = "SUBJECTEMERGENCYCONTACT_TITLE"),
 		@UniqueConstraint(columnNames = "SUBJECTEMERGENCYCONTACT_FIRSTNAME"),
@@ -91,6 +91,22 @@ public class SubjectEmergencyContact implements Serializable{
 		this.zip = zip;
 	}
 	
+	/**
+	 * 
+	 * @param address1
+	 * @param address2
+	 * @param city
+	 * @param email
+	 * @param firstName
+	 * @param homePhone
+	 * @param lastName
+	 * @param middleName
+	 * @param mobilePhone
+	 * @param state
+	 * @param title
+	 * @param zip
+	 * @param subjectId
+	 */
 	public SubjectEmergencyContact(String address1, String address2, String city, String email, String firstName, String homePhone, String lastName, String middleName, String mobilePhone, String state, String title, String zip, Subject subjectId){
 		this.address1 = address1;
 		this.address2 = address2;
@@ -120,7 +136,7 @@ public class SubjectEmergencyContact implements Serializable{
 	
 	/**
 	 * 
-	 * @param SUBJECTId
+	 * @param subjectId
 	 */
 	public void set_subjectId(Subject subjectId){
 		this.subjectId = subjectId;

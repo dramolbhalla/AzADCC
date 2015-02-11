@@ -1,40 +1,38 @@
 package persistance.entities.Subjects;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-@Entity
-@Table(name="SUBJECT_EXPIRED")
+@Table(name = "SUBJECT_EXPIRED", catalog = "subjectdb", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "SUBJECTEXPIRED_SUBJECTEXPIRED"),
+		@UniqueConstraint(columnNames = "SUBJECTEXPIRED_SUBJECTEXPIREDAGE"),
+		@UniqueConstraint(columnNames = "SUBJECTEXPIRED_SUBJECTEXPIREDDATE"),
+		@UniqueConstraint(columnNames = "SUBJECTEXPIRED_SUBJECTEXPIREDMONTH"),
+		@UniqueConstraint(columnNames = "SUBJECTEXPIRED_SUBJECTEXPIREDYEAR"),
+		@UniqueConstraint(columnNames = "SUBJECTEXPIRED_SUBJECTEXPIREDREASON")})
+@DiscriminatorValue("SUBJECT_EXPIRED")
+@PrimaryKeyJoinColumn(name="SUBJECT_ID")
 public class SubjectExpired {
 
-	@OneToOne
+	
 	private Subject subjectId;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int expired;
-	
-	@Column(name="subjectExpired")
 	private boolean subjectExpired;
-
-	@Column(name="subjectExpiredAge")
 	private int subjectExpiredAge;
-
-	@Column(name="subjectExpiredDate")
 	private int subjectExpiredDate;
-	
-	@Column(name="subjectExpiredMonth")
 	private int subjectExpiredMonth;
-	
-	@Column(name="subjectExpiredYear")
 	private int subjectExpiredYear;
-	
-	@Column(name="subjectExpiredReason")
 	private String subjectExpiredReason; 
 	
 	/**
@@ -64,8 +62,34 @@ public class SubjectExpired {
 	
 	/**
 	 * 
+	 * @param subjectExpired
+	 * @param subjectExpiredAge
+	 * @param subjectExpiredDate
+	 * @param subjectExpiredMonth
+	 * @param subjectExpiredYear
+	 * @param subjectExpiredReason
+	 * @param subjectId
+	 */
+	public SubjectExpired(boolean subjectExpired, int subjectExpiredAge, int subjectExpiredDate, int subjectExpiredMonth, int subjectExpiredYear, String subjectExpiredReason, Subject subjectId){
+		this.subjectExpired = subjectExpired;
+		this.subjectExpiredAge = subjectExpiredAge;
+		this.subjectExpiredDate = subjectExpiredDate;
+		this.subjectExpiredMonth = subjectExpiredMonth;
+		this.subjectExpiredYear = subjectExpiredYear;
+		this.subjectExpiredReason = subjectExpiredReason;
+		this.subjectId = subjectId;
+	}
+	
+	
+	// ++------------------ getters and setters ------------------++
+	
+	
+	/**
+	 * 
 	 * @return
 	 */
+	@OneToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn(name="SUBJECT_ID")
 	public Subject get_subjectId(){
 		return subjectId;
 	}
@@ -82,6 +106,26 @@ public class SubjectExpired {
 	 * 
 	 * @return
 	 */
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "SUBJECTWORKINFO_EXPIRED", unique = true, nullable = false)
+	public int get_expired(){
+		return expired;
+	}
+	
+	/**
+	 * 
+	 * @param expired
+	 */
+	public void set_expired(int expired){
+		this.expired = expired;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	@Column(name = "SUBJECTWORKINFO_SUBJECTEXPIRED", unique = true, nullable = true)
 	public boolean get_subjectExpired (){
 		return subjectExpired;
 	}
@@ -98,6 +142,7 @@ public class SubjectExpired {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTWORKINFO_SUBJECTEXPIREDAGE", unique = true, nullable = true, length = 3)
 	public int get_subjectExpiredAge (){
 		return subjectExpiredAge;
 	}
@@ -114,6 +159,7 @@ public class SubjectExpired {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTWORKINFO_SUBJECTEXPIREDDATE", unique = true, nullable = true, length = 2)
 	public int get_subjectExpiredDate (){
 		return subjectExpiredDate;
 	}
@@ -130,6 +176,7 @@ public class SubjectExpired {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTWORKINFO_SUBJECTEXPIREDMONTH", unique = true, nullable = true, length = 2)
 	public int get_subjectExpiredMonth (){
 		return subjectExpiredMonth;
 	}
@@ -146,6 +193,7 @@ public class SubjectExpired {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTWORKINFO_SUBJECTEXPIREDYEAR", unique = true, nullable = true, length = 4)
 	public int get_subjectExpiredYear (){
 		return subjectExpiredYear;
 	}
@@ -162,6 +210,7 @@ public class SubjectExpired {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTWORKINFO_SUBJECTEXPIREDREASON", unique = true, nullable = true)
 	public String get_subjectExpiredReason (){
 		return subjectExpiredReason;
 	}

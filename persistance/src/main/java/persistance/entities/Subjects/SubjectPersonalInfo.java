@@ -4,80 +4,68 @@
  */
 package persistance.entities.Subjects;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-@Entity
-@Table(name="SUBJECT_PERSONAL_INFO")
-public class SubjectPersonalInfo {
+@Table(name = "SUBJECT_PERSONAL_INFO", catalog = "subjectdb", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_PERSONALINFO"),
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_TITLE"),
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_FIRSTNAME"),
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_MIDDLENAME"),
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_LASTNAME"),
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_INITIALS"),
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_DEPARTMENT"),
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_PROFTITLE"),
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_DESIGNATIONS"),
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_ADDRESS1"),
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_ADDRESS2"),
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_CITY"),
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_STATE"),
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_ZIP"),
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_HOMEPHONE"),
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_MOBILEPHONE"),
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_SSN"),
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_BIRTHDATE"),
+		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_EMAIL") })
+@DiscriminatorValue("SUBJECT_PERSONAL_INFO")
+@PrimaryKeyJoinColumn(name="SUBJECT_ID")
+public class SubjectPersonalInfo implements Serializable{
 	
-	@OneToOne
+	
 	private Subject subjectId;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int personalInfo;
-	
-	@Column(name="title")
 	private String title;
-	
-	@Column(name="firstName")
 	private String firstName;
-	
-	@Column(name="middleName")
 	private String middleName;
-	
-	@Column(name="lastName")
 	private String lastName;
-	
-	@Column(name="profTitle")
 	private String profTitle;
-	
-	@Column(name="address1")
 	private String address1; 
-	
-	@Column(name="address2")
 	private String address2; 
-	
-	@Column(name="city")
 	private String city; 
-	
-	@Column(name="state")
 	private String state; 
-	
-	@Column(name="zip")
 	private String zip;  
-	
-	@Column(name="homePhone")
 	private String homePhone; 
-	
-	@Column(name="mobilePhone")
 	private String mobilePhone; 
-	
-	@Column(name="ssn")
 	private String ssn;  
-	
-	@Column(name="birthdate")
 	private String birthdate;
-	
-	@Column(name="email")
 	private String email; 
-	
-	@OneToMany
 	private Set<SubjectEmergencyContact> subjectEmergencyContact;
-	
-	@OneToOne
 	private SubjectExpired subjectExpired;
-	
-	@OneToMany
 	private Set<SubjectWorkInfo> subjectWorkInfo;
 	
 	/**
@@ -123,17 +111,40 @@ public class SubjectPersonalInfo {
 		this.zip = zip;
 	}
 	
+	public SubjectPersonalInfo(String address1, String address2, String birthdate, String city, String email, String firstName, String homePhone, String lastName, String middleName, String mobilePhone, String profTitle, String ssn, String state, String title, String zip, Subject subjectId){
+		this.address1 = address1;
+		this.address2 = address2;
+		this.birthdate = birthdate;
+		this.city = city;
+		this.email = email;
+		this.firstName = firstName;
+		this.homePhone = homePhone;
+		this.lastName = lastName;
+		this.middleName = middleName;
+		this.mobilePhone = mobilePhone;
+		this.profTitle = profTitle;
+		this.ssn = ssn;
+		this.state = state;
+		this.title = title;
+		this.zip = zip;
+		this.subjectId = subjectId;
+	}
+	
+	//getters and setters 
+	
 	/**
 	 * 
 	 * @return
 	 */
+	@OneToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn(name="SUBJECT_ID")
 	public Subject get_subjectId(){
 		return subjectId;
 	}
 	
 	/**
 	 * 
-	 * @param userId
+	 * @param subjectId
 	 */
 	public void set_subjectId(Subject subjectId){
 		this.subjectId = subjectId;
@@ -143,6 +154,26 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "SUBJECTPERSONALINFO_PERSONALINFO", unique = true, nullable = false)
+	public int get_personalInfo(){
+		return personalInfo;
+	}
+	
+	/**
+	 * 
+	 * @param personalInfo
+	 */
+	public void set_personalInfo(int personalInfo){
+		this.personalInfo = personalInfo;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	@Column(name = "SUBJECTPERSONALINFO_TITLE", unique = true, nullable = true)
 	public String get_title(){
 		return title;
 	}
@@ -159,6 +190,7 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTPERSONALINFO_FIRSTNAME", unique = true, nullable = false)
 	public String get_firstName(){
 		return firstName;
 	}
@@ -175,6 +207,7 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTPERSONALINFO_MIDDLENAME", unique = true, nullable = true)
 	public String get_middleName(){
 		return middleName;
 	}
@@ -191,6 +224,7 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTPERSONALINFO_LASTNAME", unique = true, nullable = false)
 	public String get_lastName(){
 		return lastName;
 	}
@@ -207,6 +241,7 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTPERSONALINFO_PROFTITLE", unique = true, nullable = false)
 	public String get_profTitle (){
 		return profTitle;
 	}
@@ -223,6 +258,7 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTPERSONALINFO_ADDRESS1", unique = true, nullable = false)
 	public String get_address1 () {
 		return address1;
 	}
@@ -239,6 +275,7 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTPERSONALINFO_ADDRESS2", unique = true, nullable = true)
 	public String get_address2 () {
 		return address2;
 	}
@@ -255,6 +292,7 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTPERSONALINFO_CITY", unique = true, nullable = false)
 	public String get_city () {
 		return city;
 	}
@@ -271,6 +309,7 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTPERSONALINFO_STATE", unique = true, nullable = false)
 	public String get_state () {
 		return state;
 	}
@@ -287,6 +326,7 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTPERSONALINFO_ZIP", unique = true, nullable = false, length = 9)
 	public String get_zip () {
 		return zip;
 	}
@@ -303,6 +343,7 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTPERSONALINFO_HOMEPHONE", unique = true, nullable = false, length = 10)
 	public String get_homePhone () {
 		return homePhone;
 	}
@@ -319,6 +360,7 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTPERSONALINFO_MOBILEPHONE", unique = true, nullable = true)
 	public String get_mobilePhone () {
 		return mobilePhone;
 	}
@@ -335,6 +377,7 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTPERSONALINFO_SSN", unique = true, nullable = false, length = 9)
 	public String get_ssn () {
 		return ssn;
 	}
@@ -351,6 +394,7 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@Column(name = "SUBJECTPERSONALINFO_BIRTHDATE", unique = true, nullable = false, length = 8)
 	public String get_birthdate () {
 		return birthdate;
 	}
@@ -375,6 +419,7 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @param email
 	 */
+	@Column(name = "SUBJECTPERSONALINFO_EMAIL", unique = true, nullable = true)
 	public void set_email (String email){
 		this.email = email;
 	}
@@ -383,6 +428,7 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "SUBJECT")
 	public Set<SubjectEmergencyContact> get_SubjectEmergencyContact(){
 		return subjectEmergencyContact;
 	}
@@ -399,6 +445,8 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@OneToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn(name="SUBJECT_ID")
 	public SubjectExpired get_SubjectExpired(){
 		return subjectExpired;
 	}
@@ -415,6 +463,8 @@ public class SubjectPersonalInfo {
 	 * 
 	 * @return
 	 */
+	@OneToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn(name="SUBJECT_ID")
 	public Set<SubjectWorkInfo> get_SubjectWorkInfo(){
 		return subjectWorkInfo;
 	}
