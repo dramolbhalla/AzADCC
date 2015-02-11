@@ -4,59 +4,51 @@
  */
 package persistance.entities.Centers;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.io.Serializable;
+
 import javax.persistence.*;
 
-@Entity
-@Table(name="CENTER")
-public class Center {
+@Entity 
+@Table(name = "CENTER", catalog = "centerdb", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "CENTER_CENTERID"),
+		@UniqueConstraint(columnNames = "CENTER_CENTERNUMBER"),
+		@UniqueConstraint(columnNames = "CENTER_CENTERNAME"),
+		@UniqueConstraint(columnNames = "CENTER_CENTERCONTACTNAME"),
+		@UniqueConstraint(columnNames = "CENTER_CENTERCONTACTTITLE"),
+		@UniqueConstraint(columnNames = "CENTER_CENTERCONTACTFIRSTNAME"),
+		@UniqueConstraint(columnNames = "CENTER_CENTERCONTACTLASTNAME"),
+		@UniqueConstraint(columnNames = "CENTER_CENTERCONTACTJOBTITLE"),
+		@UniqueConstraint(columnNames = "CENTER_CENTERADDRESS1"),
+		@UniqueConstraint(columnNames = "CENTER_CENTERADDRESS2"),
+		@UniqueConstraint(columnNames = "CENTER_CENTERCITY"),
+		@UniqueConstraint(columnNames = "CENTER_CENTERSTATE"),
+		@UniqueConstraint(columnNames = "CENTER_CENTERAZIP"),
+		@UniqueConstraint(columnNames = "CENTER_CENTERPHONE"),
+		@UniqueConstraint(columnNames = "CENTER_CENTEREXTENSION"),
+		@UniqueConstraint(columnNames = "CENTER_CENTERFAX"), 
+		@UniqueConstraint(columnNames = "CENTER_CENTERNOTE")})
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorValue("CENTER")
+public class Center implements Serializable{
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	int cid;
-	
-	@Column(name="centerId")
 	String centerId;
-	
-	@Column(name="centerNumber")
 	String centerNumber;  
-	
-	@Column(name="centerName")
 	String centerName; 
-	
-	@Column(name="centerContactTitle")
 	String centerContactTitle;
-	
-	@Column(name="centerContactFirstName")
 	String centerContactFirstName;
-	
-	@Column(name="centerContactLastName")
 	String centerContactLastName;
-	
-	@Column(name="centerContactJobTitle")
 	String centerContactJobTitle;
-	
-	@Column(name="centerAddress1")
 	String centerAddress1; 
-	
-	@Column(name="centerAddress2")
 	String centerAddress2; 
-	
-	@Column(name="centerCity")
 	String centerCity; 
-	
-	@Column(name="centerState")
 	String centerState;  
-	
-	@Column(name="centerZip")
 	String centerZip; 
-	
-	@Column(name="centerPhone")
 	String centerPhone; 
-	
-	@Column(name="centerFax")
+	String centerExtension;
 	String centerFax; 
-	
-	@Column(name="centerNote")
 	String centerNote;
 	
 	/**
@@ -84,7 +76,7 @@ public class Center {
 	 * @param centerState
 	 * @param centerZip
 	 */
-	public Center(String centerAddress1, String centerAddress2, String centerCity, String centerContactFirstName, String centerContactJobTitle, String centerContactLastName, String centerContactTitle, String centerFax,String centerId, String centerName, String centerNote, String centerNumber, String centerPhone, String centerState, String centerZip){
+	public Center(String centerAddress1, String centerAddress2, String centerCity, String centerContactFirstName, String centerContactJobTitle, String centerContactLastName, String centerContactTitle, String centerExtension, String centerFax,String centerId, String centerName, String centerNote, String centerNumber, String centerPhone, String centerState, String centerZip){
 		this.centerAddress1 = centerAddress1;
 		this.centerAddress2 = centerAddress2;
 		this.centerCity = centerCity;
@@ -92,6 +84,7 @@ public class Center {
 		this.centerContactJobTitle = centerContactJobTitle;
 		this.centerContactLastName = centerContactLastName;
 		this.centerContactTitle = centerContactTitle;
+		this.centerExtension = centerExtension;
 		this.centerFax = centerFax;
 		this.centerId = centerId; 
 		this.centerName = centerName; 
@@ -102,7 +95,10 @@ public class Center {
 		this.centerZip = centerZip;
 	}
 	
-	//Getter and Setters	
+	//Getter and Setters
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "CENTER_ID", unique = true, nullable = false)
 	public int get_cid (){
 		return cid;
 	}
@@ -111,6 +107,7 @@ public class Center {
 		this.cid = cid;
 	}
 	
+	@Column(name = "CENTER_CENTERID", unique = true, nullable = false, length = 10)
 	public String get_centerId(){
 		return centerId;
 	}
@@ -119,6 +116,7 @@ public class Center {
 		this.centerId = centerId;
 	}
 	
+	@Column(name = "CENTER_CENTERNUMBER", unique = true, nullable = false, length = 2)
 	public String get_centerNumber(){
 		return centerNumber;
 	}
@@ -127,6 +125,7 @@ public class Center {
 		this.centerNumber = centerNumber;
 	}
 	
+	@Column(name = "CENTER_CENTERNAME", unique = true, nullable = false)
 	public String get_centerName(){
 		return centerName;
 	}
@@ -135,6 +134,7 @@ public class Center {
 		this.centerName = centerName;
 	}
 
+	@Column(name = "CENTER_CENTERTITLE", unique = true, nullable = true)
 	public String get_centerContactTitle(){
 		return centerContactTitle;
 	}
@@ -143,6 +143,7 @@ public class Center {
 		this.centerContactTitle = centerContactTitle;
 	}
 	
+	@Column(name = "CENTER_CENTERFIRSTNAME", unique = true, nullable = false)
 	public String get_centerContactFirstName(){
 		return centerContactFirstName;
 	}
@@ -151,6 +152,7 @@ public class Center {
 		this.centerContactFirstName = centerContactFirstName;
 	}
 	
+	@Column(name = "CENTER_CENTERCONTACTLASTNAME", unique = true, nullable = false)
 	public String get_centerContactLastName(){
 		return centerContactLastName;
 	}
@@ -159,6 +161,7 @@ public class Center {
 		this.centerContactLastName = centerContactLastName;
 	}
 	
+	@Column(name = "CENTER_CENTERCONTACTJOBTITLE", unique = true, nullable = true)
 	public String get_centerContactJobTitle(){
 		return centerContactJobTitle;
 	}
@@ -167,6 +170,7 @@ public class Center {
 		this.centerContactJobTitle = centerContactJobTitle;
 	}
 	
+	@Column(name = "CENTER_CENTERADDRESS1", unique = true, nullable = false)
 	public String get_centerAddress1(){
 		return centerAddress1;
 	}
@@ -175,6 +179,7 @@ public class Center {
 		this.centerAddress1 = centerAddress1;
 	}
 	
+	@Column(name = "CENTER_CENTERADDRESS2", unique = true, nullable = true)
 	public String get_centerAddress2(){
 		return centerAddress2;
 	}
@@ -183,6 +188,7 @@ public class Center {
 		this.centerAddress2 = centerAddress2;
 	}
 	
+	@Column(name = "CENTER_CENTERCITY", unique = true, nullable = false)
 	public String get_centerCity(){
 		return centerCity;
 	}
@@ -191,6 +197,7 @@ public class Center {
 		this.centerCity = centerCity;
 	}
 	
+	@Column(name = "CENTER_CENTERSTATE", unique = true, nullable = false)
 	public String get_centerState(){
 		return centerState;
 	}
@@ -199,6 +206,7 @@ public class Center {
 		this.centerState = centerState;
 	}
 	
+	@Column(name = "CENTER_CENTERZIP", unique = true, nullable = false, length = 9)
 	public String get_centerZip(){
 		return centerZip;
 	}
@@ -207,6 +215,7 @@ public class Center {
 		this.centerZip = centerZip;
 	}
 	
+	@Column(name = "CENTER_CENTERPHONE", unique = true, nullable = false, length = 10)
 	public String get_centerPhone(){
 		return centerPhone;
 	}
@@ -215,6 +224,16 @@ public class Center {
 		this.centerPhone = centerPhone;
 	}
 	
+	@Column(name = "CENTER_CENTEREXTENSION", unique = true, nullable = false, length = 10)
+	public String get_centerExtension(){
+		return centerExtension;
+	}
+	
+	public void set_clinicExtension(String centerExtension){
+		this.centerExtension = centerExtension;
+	}
+	
+	@Column(name = "CENTER_CENTERFAX", unique = true, nullable = true, length = 10)
 	public String get_centerFax(){
 		return centerFax;
 	}
@@ -223,6 +242,7 @@ public class Center {
 		this.centerFax = centerFax;
 	}
 	
+	@Column(name = "CENTER_CENTERNOTE", unique = true, nullable = true)
 	public String get_centerNote(){
 		return centerNote;
 	}

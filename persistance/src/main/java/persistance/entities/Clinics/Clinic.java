@@ -4,59 +4,51 @@
  */
 package persistance.entities.Clinics;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.io.Serializable;
+
 import javax.persistence.*;
 
-@Entity
-@Table(name="CLINIC")
-public class Clinic {
+@Entity 
+@Table(name = "CLINIC", catalog = "clinicdb", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "CLINIC_CLINICID"),
+		@UniqueConstraint(columnNames = "CLINIC_CLINICNUMBER"),
+		@UniqueConstraint(columnNames = "CLINIC_CLINICNAME"),
+		@UniqueConstraint(columnNames = "CLINIC_CLINICCONTACTNAME"),
+		@UniqueConstraint(columnNames = "CLINIC_CLINICCONTACTTITLE"),
+		@UniqueConstraint(columnNames = "CLINIC_CLINICCONTACTFIRSTNAME"),
+		@UniqueConstraint(columnNames = "CLINIC_CLINICCONTACTLASTNAME"),
+		@UniqueConstraint(columnNames = "CLINIC_CLINICCONTACTJOBTITLE"),
+		@UniqueConstraint(columnNames = "CLINIC_CLINICADDRESS1"),
+		@UniqueConstraint(columnNames = "CLINIC_CLINICADDRESS2"),
+		@UniqueConstraint(columnNames = "CLINIC_CLINICCITY"),
+		@UniqueConstraint(columnNames = "CLINIC_CLINICSTATE"),
+		@UniqueConstraint(columnNames = "CLINIC_CLINICAZIP"),
+		@UniqueConstraint(columnNames = "CLINIC_CLINICPHONE"),
+		@UniqueConstraint(columnNames = "CLINIC_CLINICEXTENSION"),
+		@UniqueConstraint(columnNames = "CLINIC_CLINICFAX"), 
+		@UniqueConstraint(columnNames = "CLINIC_CLINICNOTE")})
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorValue("CLINIC")
+public class Clinic implements Serializable{
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	int cid;
-	
-	@Column(name="clinicId")
+	int cid;	
 	String clinicId;
-	
-	@Column(name="clinicNumber")
 	String clinicNumber;  
-	
-	@Column(name="clinicName")
 	String clinicName; 
-	
-	@Column(name="clinicContactTitle")
 	String clinicContactTitle;
-	
-	@Column(name="clinicContactFirstName")
 	String clinicContactFirstName;
-	
-	@Column(name="clinicContactLastName")
 	String clinicContactLastName;
-	
-	@Column(name="clinicContactJobTitle")
 	String clinicContactJobTitle;
-	
-	@Column(name="clinicAddress1")
 	String clinicAddress1; 
-	
-	@Column(name="clinicAddress2")
 	String clinicAddress2; 
-	
-	@Column(name="clinicCity")
 	String clinicCity; 
-	
-	@Column(name="clinicState")
 	String clinicState;  
-	
-	@Column(name="clinicZip")
 	String clinicZip; 
-	
-	@Column(name="clinicPhone")
-	String clinicPhone; 
-	
-	@Column(name="clinicFax")
+	String clinicPhone;
+	String clinicExtension;
 	String clinicFax; 
-	
-	@Column(name="clinicNote")
 	String clinicNote;
 	
 	/**
@@ -84,7 +76,7 @@ public class Clinic {
 	 * @param clinicState
 	 * @param clinicZip
 	 */
-	public Clinic(String clinicAddress1, String clinicAddress2, String clinicCity, String clinicContactFirstName, String clinicContactJobTitle, String clinicContactLastName, String clinicContactTitle, String clinicFax,String clinicId, String clinicName, String clinicNote, String clinicNumber, String clinicPhone, String clinicState, String clinicZip){
+	public Clinic(String clinicAddress1, String clinicAddress2, String clinicCity, String clinicContactFirstName, String clinicContactJobTitle, String clinicContactLastName, String clinicContactTitle, String clinicExtension,String clinicFax,String clinicId, String clinicName, String clinicNote, String clinicNumber, String clinicPhone, String clinicState, String clinicZip){
 		this.clinicAddress1 = clinicAddress1;
 		this.clinicAddress2 = clinicAddress2;
 		this.clinicCity = clinicCity;
@@ -92,6 +84,7 @@ public class Clinic {
 		this.clinicContactJobTitle = clinicContactJobTitle;
 		this.clinicContactLastName = clinicContactLastName;
 		this.clinicContactTitle = clinicContactTitle;
+		this.clinicExtension = clinicExtension;
 		this.clinicFax = clinicFax;
 		this.clinicId = clinicId; 
 		this.clinicName = clinicName; 
@@ -104,6 +97,9 @@ public class Clinic {
 	
 	//Getter and Setters
 	
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "CLINIC_ID", unique = true, nullable = false)
 	public int get_cid (){
 		return cid;
 	}
@@ -112,6 +108,7 @@ public class Clinic {
 		this.cid = cid;
 	}
 	
+	@Column(name = "CLINIC_CLINICID", unique = true, nullable = false, length = 10)
 	public String get_clinicId(){
 		return clinicId;
 	}
@@ -120,6 +117,7 @@ public class Clinic {
 		this.clinicId = clinicId;
 	}
 	
+	@Column(name = "CLINIC_CLINICNUMBER", unique = true, nullable = false, length = 2)
 	public String get_clinicNumber(){
 		return clinicNumber;
 	}
@@ -128,6 +126,7 @@ public class Clinic {
 		this.clinicNumber = clinicNumber;
 	}
 	
+	@Column(name = "CLINIC_CLINICNAME", unique = true, nullable = false)
 	public String get_clinicName(){
 		return clinicName;
 	}
@@ -136,6 +135,7 @@ public class Clinic {
 		this.clinicName = clinicName;
 	}
 
+	@Column(name = "CLINIC_CLINICTITLE", unique = true, nullable = true)
 	public String get_clinicContactTitle(){
 		return clinicContactTitle;
 	}
@@ -144,6 +144,7 @@ public class Clinic {
 		this.clinicContactTitle = clinicContactTitle;
 	}
 	
+	@Column(name = "CLINIC_CLINICFIRSTNAME", unique = true, nullable = false)
 	public String get_clinicContactFirstName(){
 		return clinicContactFirstName;
 	}
@@ -152,6 +153,7 @@ public class Clinic {
 		this.clinicContactFirstName = clinicContactFirstName;
 	}
 	
+	@Column(name = "CLINIC_CLINICCONTACTLASTNAME", unique = true, nullable = false)
 	public String get_clinicContactLastName(){
 		return clinicContactLastName;
 	}
@@ -160,6 +162,7 @@ public class Clinic {
 		this.clinicContactLastName = clinicContactLastName;
 	}
 	
+	@Column(name = "CLINIC_CLINICCONTACTJOBTITLE", unique = true, nullable = true)
 	public String get_clinicContactJobTitle(){
 		return clinicContactJobTitle;
 	}
@@ -168,6 +171,7 @@ public class Clinic {
 		this.clinicContactJobTitle = clinicContactJobTitle;
 	}
 	
+	@Column(name = "CLINIC_CLINICADDRESS1", unique = true, nullable = false)
 	public String get_clinicAddress1(){
 		return clinicAddress1;
 	}
@@ -176,6 +180,7 @@ public class Clinic {
 		this.clinicAddress1 = clinicAddress1;
 	}
 	
+	@Column(name = "CLINIC_CLINICADDRESS2", unique = true, nullable = true)
 	public String get_clinicAddress2(){
 		return clinicAddress2;
 	}
@@ -184,6 +189,7 @@ public class Clinic {
 		this.clinicAddress2 = clinicAddress2;
 	}
 	
+	@Column(name = "CLINIC_CLINICCITY", unique = true, nullable = false)
 	public String get_clinicCity(){
 		return clinicCity;
 	}
@@ -192,6 +198,7 @@ public class Clinic {
 		this.clinicCity = clinicCity;
 	}
 	
+	@Column(name = "CLINIC_CLINICSTATE", unique = true, nullable = false)
 	public String get_clinicState(){
 		return clinicState;
 	}
@@ -200,6 +207,7 @@ public class Clinic {
 		this.clinicState = clinicState;
 	}
 	
+	@Column(name = "CLINIC_CLINICZIP", unique = true, nullable = false, length = 9)
 	public String get_clinicZip(){
 		return clinicZip;
 	}
@@ -208,6 +216,7 @@ public class Clinic {
 		this.clinicZip = clinicZip;
 	}
 	
+	@Column(name = "CLINIC_CLINICPHONE", unique = true, nullable = false, length = 10)
 	public String get_clinicPhone(){
 		return clinicPhone;
 	}
@@ -216,6 +225,16 @@ public class Clinic {
 		this.clinicPhone = clinicPhone;
 	}
 	
+	@Column(name = "CLINIC_CLINICEXTENSION", unique = true, nullable = false, length = 10)
+	public String get_clinicExtension(){
+		return clinicExtension;
+	}
+	
+	public void set_clinicExtension(String clinicExtension){
+		this.clinicExtension = clinicExtension;
+	}
+	
+	@Column(name = "CLINIC_CLINICFAX", unique = true, nullable = true, length = 10)
 	public String get_clinicFax(){
 		return clinicFax;
 	}
@@ -224,6 +243,7 @@ public class Clinic {
 		this.clinicFax = clinicFax;
 	}
 	
+	@Column(name = "CLINIC_CLINICNOTE", unique = true, nullable = true)
 	public String get_clinicNote(){
 		return clinicNote;
 	}
