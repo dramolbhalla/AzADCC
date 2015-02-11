@@ -4,11 +4,29 @@
 
 package persistance.entities.UDS_ver3.Followup;
 
-public class Header {
-	int uid;
-	int sid;
-	String userId;
-	String userInitial;
+import java.io.Serializable;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import persistance.entities.Subjects.*;
+import persistance.entities.Users.*;
+
+@Entity 
+@Table(name = "HEADER", catalog = "uds_ver3_followup", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "USER_ID"),
+		@UniqueConstraint(columnNames = "USER_USERID"),
+		@UniqueConstraint(columnNames = "USER_ACCESSLEVEL") })
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorValue("HEADER")
+public class Header implements Serializable{
+	User user;
+	Subject subject;
+	
 	String subjectId;
 	String formMo;
 	String formDy;
@@ -26,4 +44,8 @@ public class Header {
 	int visityr;
 	int visitnum;
 	String initials;
+	
+	public Header(){
+		
+	}
 }
