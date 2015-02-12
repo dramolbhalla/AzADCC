@@ -4,17 +4,13 @@
 
 package persistance.entities.UDS_ver3.Followup;
 
+import persistance.entities.Subjects.Subject;
+import persistance.entities.Users.User;
+
 public class B1 {
-	int uid;
-	int sid;
-	String userId;
-	String userInitial;
-	String subjectId;
-	String formMo;
-	String formDy;
-	String formYr;
-	int visitNum;
-	String visitType;
+	User user;
+	Subject subject;
+	
 	int b1;
 	int height;
 	int wieght;

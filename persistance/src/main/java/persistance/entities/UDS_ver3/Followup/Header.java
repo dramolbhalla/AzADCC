@@ -27,12 +27,6 @@ public class Header implements Serializable{
 	User user;
 	Subject subject;
 	
-	String subjectId;
-	String formMo;
-	String formDy;
-	String formYr;
-	int visitNum;
-	String visitType;
 	int header;
 	String packet;
 	String formid;
