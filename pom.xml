@@ -7,5 +7,8 @@
   <modules>
   	
   	<module>persistance</module>
+  	<module>persistance_ver_2</module>
+  	<module>jaxb</module>
+  	<module>jaxb_persistance_</module>
   </modules>
 </project>
