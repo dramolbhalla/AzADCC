@@ -4,17 +4,15 @@
 
 package persistance.entities.UDS_ver3.Initial;
 
+import persistance.entities.Subjects.Subject;
+import persistance.entities.UDS_ver3.Initial.Header;
+import persistance.entities.Users.User;
+
 public class B8 {
-	int uid;
-	int sid;
-	String userId;
-	String userInitial;
-	String subjectId;
-	String formMo;
-	String formDy;
-	String formYr;
-	int visitNum;
-	String visitType;
+	User user;
+	Subject subject;
+	Header header;
+	
 	int b8;
 	int normexam;
 	int parksign;
