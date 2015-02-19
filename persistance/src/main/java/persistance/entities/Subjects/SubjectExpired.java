@@ -14,6 +14,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+@Entity
 @Table(name = "SUBJECT_EXPIRED", catalog = "subjectdb", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "SUBJECTEXPIRED_SUBJECTEXPIRED"),
 		@UniqueConstraint(columnNames = "SUBJECTEXPIRED_SUBJECTEXPIREDAGE"),

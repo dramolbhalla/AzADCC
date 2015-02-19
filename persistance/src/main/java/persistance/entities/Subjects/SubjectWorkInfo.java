@@ -20,6 +20,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+@Entity
 @Table(name = "SUBJECT_WORK_INFO", catalog = "subjectdb", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "SUBJECTWORKINFO_WORKINFO"),
 		@UniqueConstraint(columnNames = "SUBJECTWORKINFO_ADDRESS1"),

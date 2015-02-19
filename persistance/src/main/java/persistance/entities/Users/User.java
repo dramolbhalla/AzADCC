@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import persistance.entities.Subjects.*;
 import persistance.entities.Centers.*;
 import persistance.entities.Clinics.*;

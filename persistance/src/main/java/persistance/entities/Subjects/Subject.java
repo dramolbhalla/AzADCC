@@ -4,6 +4,8 @@
  */
 package persistance.entities.Subjects;
 
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import persistance.entities.Clinics.*;
 import static javax.persistence.GenerationType.IDENTITY;
 

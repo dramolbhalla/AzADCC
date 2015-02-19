@@ -22,6 +22,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+@Entity
 @Table(name = "SUBJECT_PERSONAL_INFO", catalog = "subjectdb", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_PERSONALINFO"),
 		@UniqueConstraint(columnNames = "SUBJECTPERSONALINFO_TITLE"),
