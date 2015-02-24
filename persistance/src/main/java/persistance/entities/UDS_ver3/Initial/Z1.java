@@ -6,10 +6,13 @@ package persistance.entities.UDS_ver3.Initial;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import persistance.entities.Subjects.Subject;
 import persistance.entities.UDS_ver3.Initial.Header;
 import persistance.entities.Users.User;
 
+@Entity
 public class Z1 implements Serializable{
 	
 	User user;
@@ -105,18 +108,21 @@ public class Z1 implements Serializable{
 		this.b7comm = b7comm;
 	}
 	
+	@ManyToOne
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
 	}
+	@ManyToOne
 	public Subject getSubject() {
 		return subject;
 	}
 	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}
+	@ManyToOne
 	public Header getHeader() {
 		return header;
 	}

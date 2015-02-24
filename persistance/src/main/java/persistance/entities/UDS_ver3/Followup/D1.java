@@ -6,9 +6,12 @@ package persistance.entities.UDS_ver3.Followup;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import persistance.entities.Subjects.Subject;
 import persistance.entities.Users.User;
 
+@Entity
 public class D1 implements Serializable{
 	User user;
 	Subject subject;
@@ -445,6 +448,7 @@ public class D1 implements Serializable{
 		this.medsif = medsif;
 	}
 
+	@ManyToOne
 	public User getUser() {
 		return user;
 	}
@@ -453,6 +457,7 @@ public class D1 implements Serializable{
 		this.user = user;
 	}
 
+	@ManyToOne
 	public Subject getSubject() {
 		return subject;
 	}
@@ -461,6 +466,7 @@ public class D1 implements Serializable{
 		this.subject = subject;
 	}
 
+	@ManyToOne
 	public Header getHeader() {
 		return header;
 	}

@@ -4,12 +4,15 @@
  */
 package persistance.entities.Users;
 
+import javax.persistence.Entity;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.persistence.OneToOne;
 
+@Entity
 @Table(name = "USER_PERSONAL_INFO", catalog = "userdb", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "USERPERSONALINFO_PERSONALINFO"),
 		@UniqueConstraint(columnNames = "USERPERSONALINFO_TITLE"),

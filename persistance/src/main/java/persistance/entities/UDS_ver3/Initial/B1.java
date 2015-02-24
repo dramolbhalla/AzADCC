@@ -6,10 +6,15 @@ package persistance.entities.UDS_ver3.Initial;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import persistance.entities.Subjects.Subject;
 import persistance.entities.UDS_ver3.Initial.Header;
 import persistance.entities.Users.User;
 
+@Entity
 public class B1 implements Serializable{
 	User user;
 	Subject subject;
@@ -71,18 +76,21 @@ public class B1 implements Serializable{
 		this.hearwaid = hearwaid;
 	}
 	
+	@ManyToOne
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
 	}
+	@ManyToOne
 	public Subject getSubject() {
 		return subject;
 	}
 	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}
+	@ManyToOne
 	public Header getHeader() {
 		return header;
 	}
@@ -149,6 +157,8 @@ public class B1 implements Serializable{
 	public void setHearing(int hearing) {
 		this.hearing = hearing;
 	}
+	@Id
+	@GeneratedValue
 	public int getHearaid() {
 		return hearaid;
 	}

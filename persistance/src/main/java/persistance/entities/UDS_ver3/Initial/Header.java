@@ -70,12 +70,14 @@ public class Header implements Serializable {
 		this.initials = initials;
 	}
 	
+	@ManyToOne
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
 	}
+	@ManyToOne
 	public Subject getSubject() {
 		return subject;
 	}
@@ -112,6 +114,8 @@ public class Header implements Serializable {
 	public void setAdcid(int adcid) {
 		this.adcid = adcid;
 	}
+	@Id
+	@GeneratedValue
 	public String getPtid() {
 		return ptid;
 	}

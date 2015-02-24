@@ -9,6 +9,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.persistence.OneToOne;
 
 @Entity 
 @Table(name = "USER_EMERGENCY_CONTACT", catalog = "userdb", uniqueConstraints = {
