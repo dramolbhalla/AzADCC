@@ -10,5 +10,7 @@
   	<module>persistance_ver_2</module>
   	<module>jaxb</module>
   	<module>jaxb_persistance_</module>
+  	<module>spring</module>
+  	<module>Hyperjaxb</module>
   </modules>
 </project>

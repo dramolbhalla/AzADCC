@@ -5,13 +5,5 @@
     <artifactId>AzADCC</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>jaxb_persistance_</artifactId>
-  <dependencies>
-  	<dependency>
-  		<groupId>org.jvnet.jaxb2.maven2</groupId>
-  		<artifactId>maven-jaxb2-plugin</artifactId>
-  		<version>0.11.0</version>
-  		<type>maven-plugin</type>
-  	</dependency>
-  </dependencies>
+  <artifactId>Hyperjaxb</artifactId>
 </project>
